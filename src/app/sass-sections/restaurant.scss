@@ -1,0 +1,111 @@
+.res-sidebar {
+  margin: 1.7rem auto 0 2rem !important;
+
+}
+
+.restaurant {
+  border: 2px solid white;
+  margin: 1.5rem;
+  width: 94%;
+}
+
+.undercategory {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 1rem;
+  margin: 1rem auto 2rem auto;
+  border-bottom: 1px solid white;
+  .res-title {
+    margin-top: 1.5rem;
+  }
+}
+
+.restaurant-under-list {
+  display: flex;
+  justify-content: left;
+  margin: 20px 0px 10px;
+
+  .restaurant-under-element {
+    width: fit-content;
+    text-decoration: none;
+    list-style-type: none;
+    border: 0.1rem solid black;
+    border-radius: 0.5rem;
+    text-align: center;
+    margin-right: 0.5rem;
+    padding: 0.45rem;
+    background-color: $second-color;
+    position: relative;
+    font-size: smaller;
+
+    a {
+      color: $first-color;
+    }
+  }
+}
+
+
+
+.restaurant-text {
+  color: $second-color;
+}
+
+.restaurant-text-container {
+  background-color: rgba($second-color, 0.3);
+  box-sizing: border-box;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 60ch;
+  text-align: left;
+  margin: 1rem;
+}
+
+
+
+.restaurant-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 2rem;
+  li {
+    list-style-type: none;
+    .press-info {
+      margin: 1rem;
+      a {
+        color: $second-color;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $breaking-point) {
+  .restaurant {
+    width: 85vw;
+    margin: 1rem;
+  }
+
+  .undercategory {
+    flex-wrap: wrap;
+  }
+  .res-title {
+    margin: 0 0 0 1.5rem ;
+  }
+
+  .restaurant-text-container {
+    padding: 1rem;
+    width: 85vw;
+  }
+
+  .restaurant-info {
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+    ul {
+      margin-top: 1rem;
+      .press-info {
+        margin: 0;
+      }
+    }
+  }
+}

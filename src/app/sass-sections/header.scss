@@ -1,0 +1,153 @@
+// Header-navmenu
+
+header {
+  >.logo {
+    width: 150px;
+    padding: 1rem;
+    cursor: pointer;
+  }
+
+  background-color: $default-red;
+
+  nav {
+    width: 100%;
+    background-color: $default-red;
+
+    menu {
+      display: flex;
+      justify-content: space-evenly;
+      list-style: none;
+      a {
+        color: white;
+        font-weight: bold;
+        padding-block-end: 22px;
+
+        font-size: 1.2em;
+        transition: transform 0.2s;
+        display: flex;
+
+        &:hover {
+          color: lightgray;
+        }
+      }
+      .active {
+        border-bottom: 4px solid white;
+      }
+    }
+  }
+}
+
+.header-nav-toggle {
+  display: none;
+}
+
+@media screen and (max-width: $breaking-point) {
+  @mixin burger-menu-line {
+    display: block;
+    content: "";
+    width: 3em;
+    height: 0.4em;
+    border-radius: 0.2em;
+    background-color: white;
+  }
+
+  .header-nav-toggle {
+    display: block;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    @include burger-menu-line;
+
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    display: block;
+
+    transition: top 0.5s, right 0.5s, transform 0.5s;
+
+    &::before {
+      @include burger-menu-line;
+      position: relative;
+      top: 0.8em;
+
+      transition: transform 0.5s;
+    }
+
+    &::after {
+      @include burger-menu-line;
+      position: relative;
+      top: 1.2em;
+    }
+  }
+
+  .header-menu {
+    display: none;
+  }
+
+  .header-nav.open {
+    display: block;
+    background-color: rgba(grey, 0.4);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 900;
+
+    .header-nav-toggle {
+      z-index: 1001;
+      transform: rotate(225deg);
+
+      top: 5em;
+      right: 4em;
+
+      &::before {
+        top: 0;
+        transform: rotate(90deg);
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+
+    .header-menu {
+      z-index: 1;
+      background-color: $default-red;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 1em rgba(black, 0.4);
+
+      position: absolute;
+      top: 2em;
+      left: 2em;
+      right: 2em;
+      bottom: 15em;
+      z-index: 1000;
+
+      animation: header-menu_reveal 0.3s 0.2s;
+      animation-fill-mode: backwards;
+    }
+
+    @keyframes header-menu_reveal {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .header-menu-item {
+      display: block;
+      font-size: 1.5em;
+      padding-bottom: 0.3em;
+      margin: 0.5em 0;
+    }
+  }
+}

@@ -1,0 +1,110 @@
+.main-container {
+  p {
+    color: white;
+  }
+
+  h1 {
+    color: $second-color;
+    margin-top: 1.5rem;
+  }
+
+  .undercategory {
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid white;
+  }
+
+  .movies-salon-list {
+    display: flex;
+    margin: 20px 0px 10px;
+
+    .movies-salon-element {
+      width: fit-content;
+      text-decoration: none;
+      list-style-type: none;
+      border: 0.1rem solid black;
+      border-radius: 0.5rem;
+      text-align: center;
+      margin-right: 0.5rem;
+      padding: 0.45rem;
+      background-color: $second-color;
+      position: relative;
+      font-size: smaller;
+
+      a {
+        color: $first-color;
+      }
+    }
+  }
+
+  .salonA,
+  .salonB {
+    max-height: 60vh;
+    width: 100%;
+    max-width: 90vw;
+    border: 2px solid white;
+    margin-bottom: 0.6em;
+  }
+
+  .salon-header {
+    margin: 0.5em 0 1rem 0;
+    border-bottom: 1px solid white;
+    max-width: 60vw;
+  }
+
+  .salon-text {
+    color: $second-color;
+    margin-bottom: 3em;
+    background-color: rgba($second-color, 0.5);
+    box-sizing: border-box;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 90vw;
+  }
+}
+.salon-h2 {
+  color: $second-color;
+  border-bottom: 2px solid white;
+  margin: 1.5rem 1.5rem 1.5rem 0;
+  min-width: 100%;
+}
+
+.salon-movielist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+    li {
+      margin: 1rem;
+      list-style-type: none;
+      img {
+        border: 3px solid white;
+        max-width: 200px;
+      }
+
+      img:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+      }
+    }
+  
+
+  
+}
+
+@media screen and (max-width: $breaking-point) {
+  .main-container {
+    display: flex;
+    .undercategory {
+      flex-wrap: wrap;
+      margin-top: 0;
+    }
+    h1 {
+      margin: 1.5rem 0 0 1.5rem;
+    }
+  }
+}

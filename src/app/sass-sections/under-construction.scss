@@ -1,0 +1,41 @@
+.under-construction-container {
+  background-color: rgba($second-color, 0.3);
+  box-sizing: border-box;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 60ch;
+  max-width: 85vw;
+  text-align: left;
+  margin: 2rem auto;
+}
+
+.under-construction-heading {
+  text-align: center;
+  color: $second-color;
+}
+
+.under-construction-icon-container {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.under-construction-btn-container {
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.under-construction-link-home {
+  color: $second-color;
+  background-color: $default-red;
+  padding: 1rem 2.5rem;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+}
+
+.fa-wrench {
+  color: $default-red;
+  width: 10rem;
+}

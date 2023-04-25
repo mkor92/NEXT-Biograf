@@ -1,0 +1,44 @@
+.main-content {
+  border-radius: 5px;
+  margin-top: 1em;
+  margin-bottom: 12em;
+  width: 100%;
+  
+}
+
+.about-us-text {
+  padding-bottom: 2rem;
+  margin-bottom: 3em;
+  background-color: rgba($second-color, 0.3);
+  box-sizing: border-box;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 100%;
+  text-align: left;
+}
+
+.contact-text-about-us {
+  padding: 2rem 0;
+  text-align: center;
+  padding-bottom: 2rem;
+  margin-bottom: 3em;
+  background-color: rgba($second-color, 0.3);
+  box-sizing: border-box;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 100%;
+  text-align: left;
+}
+
+.about-us-img {
+  width: 100%;
+  display: block;
+  margin: 0 auto 3rem 0;
+}
+
+.aboutus-title {
+  color: $second-color;
+  border-bottom: 2px solid white;
+  margin: 1.5rem 1.5rem 1.5rem 0;
+  min-width: 100%;
+}

@@ -1,0 +1,47 @@
+$default-red: #cc0028;
+$first-color: black;
+$second-color: white;
+$forth-color: #d9d9d9;
+$breaking-point: 640px;
+
+
+*, *::after, *::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+  
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+  url("/bg.jpg");
+background-size: cover;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+}
+
+main {
+  width: 100%;
+}
+
+.sec {
+  padding: 0 5% !important;
+}
+
+.sec-cont {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@import "./sass-sections/header.scss";
+@import "./sass-sections/footer.scss";
+@import "./sass-sections/nav-menu.scss";
+@import "./sass-sections/under-construction.scss";
+@import "./sass-sections/about-us.scss";
+@import "./sass-sections/salons.scss";
+@import "./sass-sections/restaurant.scss";
