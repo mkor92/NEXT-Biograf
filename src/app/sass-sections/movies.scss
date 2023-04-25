@@ -1,0 +1,29 @@
+.movies-h2 {
+  margin: 20px 0px 10px;
+  color: $second-color;
+  width: 100%;
+  border-bottom: 1px solid $second-color;
+  padding-top: 1rem;
+}
+
+.movies-list-item {
+  max-width: 200px;
+  margin: auto;
+  text-align: center;
+  padding-top: 0.7rem;
+  list-style: none;
+}
+
+.movies-list-item-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+}
+
+.movie-title-text {
+  text-align: center;
+  color: $second-color;
+  height: 1rem;
+  margin-bottom: 1rem;
+}
