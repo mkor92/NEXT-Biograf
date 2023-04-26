@@ -4,20 +4,20 @@ $second-color: white;
 $forth-color: #d9d9d9;
 $breaking-point: 640px;
 
-
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-  
+
 body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-  url("/bg.jpg");
-background-size: cover;
-min-height: 100vh;
-display: flex;
-flex-direction: column;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("/bg.jpg");
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
@@ -34,7 +34,7 @@ main {
 }
 
 a {
-  color: inherit;
+  color: white;
   text-decoration: none;
 }
 
@@ -45,3 +45,4 @@ a {
 @import "./sass-sections/about-us.scss";
 @import "./sass-sections/salons.scss";
 @import "./sass-sections/restaurant.scss";
+@import "./sass-sections/movies.scss";
