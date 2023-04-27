@@ -8,6 +8,7 @@ const LoginForm: FC = () => {
     email: '',
     password: '',
   });
+  console.log(userData);
 
   return (
     <section className="sec-cont login-container">
@@ -17,12 +18,9 @@ const LoginForm: FC = () => {
           <label htmlFor="email">Email</label>
           <input
             onChange={(e) => {
-              e.preventDefault();
-              setUserData((prevData) => {
-                return {
-                  ...prevData,
-                  email: e.target.value,
-                };
+              setUserData({
+                ...userData,
+                [e.target.id]: e.currentTarget.value,
               });
             }}
             className="form-input-field"
@@ -33,11 +31,9 @@ const LoginForm: FC = () => {
           <input
             onChange={(e) => {
               e.preventDefault();
-              setUserData((prevData) => {
-                return {
-                  ...prevData,
-                  password: e.target.value,
-                };
+              setUserData({
+                ...userData,
+                [e.target.id]: e.currentTarget.value,
               });
             }}
             className="form-input-field"
