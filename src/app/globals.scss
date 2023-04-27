@@ -3,21 +3,23 @@ $first-color: black;
 $second-color: white;
 $forth-color: #d9d9d9;
 $breaking-point: 640px;
+$bg-color: rgba($first-color, 0.8);
 
-
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-  
+
 body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-  url("/bg.jpg");
-background-size: cover;
-min-height: 100vh;
-display: flex;
-flex-direction: column;
+    url('/bg.jpg');
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
@@ -38,10 +40,30 @@ a {
   text-decoration: none;
 }
 
-@import "./sass-sections/header.scss";
-@import "./sass-sections/footer.scss";
-@import "./sass-sections/nav-menu.scss";
-@import "./sass-sections/under-construction.scss";
-@import "./sass-sections/about-us.scss";
-@import "./sass-sections/salons.scss";
-@import "./sass-sections/restaurant.scss";
+.form-input-field {
+  display: block;
+  margin: 0 0 1rem 0;
+  border-radius: 0.5rem;
+  height: 1.7rem;
+  width: 270px;
+  outline: none;
+  border: 1px solid gray;
+}
+
+.primary-btn {
+  cursor: pointer;
+  background-color: $default-red;
+  color: $second-color;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 2.5rem;
+}
+
+@import './sass-sections/header.scss';
+@import './sass-sections/footer.scss';
+@import './sass-sections/nav-menu.scss';
+@import './sass-sections/under-construction.scss';
+@import './sass-sections/about-us.scss';
+@import './sass-sections/salons.scss';
+@import './sass-sections/restaurant.scss';
+@import './sass-sections/login.scss';
