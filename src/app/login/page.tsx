@@ -1,7 +1,14 @@
-import { FC } from 'react';
+'use client';
+
+import { FC, useState } from 'react';
 import Link from 'next/link';
 
 const LoginForm: FC = () => {
+  const [userData, setUserData] = useState({
+    email: '',
+    password: '',
+  });
+
   return (
     <section className="sec-cont login-container">
       <div>
@@ -9,13 +16,30 @@ const LoginForm: FC = () => {
         <form action="">
           <label htmlFor="email">Email</label>
           <input
+            onChange={(e) => {
+              e.preventDefault();
+              setUserData((prevData) => {
+                return {
+                  ...prevData,
+                  email: e.target.value,
+                };
+              });
+            }}
             className="form-input-field"
             type="text"
             id="email"
-            name="email"
           />
           <label htmlFor="password">Password</label>
           <input
+            onChange={(e) => {
+              e.preventDefault();
+              setUserData((prevData) => {
+                return {
+                  ...prevData,
+                  password: e.target.value,
+                };
+              });
+            }}
             className="form-input-field"
             type="password"
             id="password"
