@@ -6,22 +6,26 @@ const TicketsPage: FC = () => {
   return (
     <section className="sec-cont tickets-container">
       <h1>Biljettbokning</h1>
-
-      <Image
-        src="/images/encanto.jpg"
-        alt="movie image"
-        width={202.5}
-        height={300}
-      ></Image>
-
-      <h2>Encanto</h2>
-      <p>Stora salongen idag, Onsdag 17.00</p>
+      <div className="img-text-container">
+        <Image
+          src="/images/encanto.jpg"
+          alt="movie image"
+          width={141.75}
+          height={210}
+        ></Image>
+        <div>
+          <h2>Encanto</h2>
+          <p>Stora salongen idag, Onsdag 17.00</p>
+        </div>
+      </div>
 
       <h2>Välj antal biljetter</h2>
-      <h3>Antal biljetter</h3>
-      <div>-</div>
-      <div>2</div>
-      <div>+</div>
+      <div className="number-of-tickets-container">
+        <h3>Antal biljetter</h3>
+        <div className="plus-minus">-</div>
+        <div>2</div>
+        <div className="plus-minus">+</div>
+      </div>
 
       <h2>Välj platser</h2>
 
@@ -88,14 +92,22 @@ const TicketsPage: FC = () => {
         </div>
       </div>
 
-      <div className="choosed-seat">☑️</div>
-      <p>Vald plats</p>
-      <div className="booked-seat"></div>
-      <p>Upptagen</p>
+      <div className="choose-seat-container">
+        <div className="choosed-seat">☑️</div>
+        <p>Vald plats</p>
+      </div>
+      <div className="choose-seat-container">
+        <div className="booked-seat"></div>
+        <p>Upptagen</p>
+      </div>
+
       <div className="divider"></div>
-      <h2>
-        Att betala: <span>300kr</span>
-      </h2>
+
+      <div className="total-sum-container">
+        <h2>Att betala:</h2>
+        <h2>300kr</h2>
+      </div>
+
       <div className="divider"></div>
       <button className="primary-btn">Logga In</button>
       <button className="primary-btn">Fortsätt som gäst</button>
