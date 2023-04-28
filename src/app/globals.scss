@@ -57,6 +57,25 @@ a {
   text-decoration: none;
 }
 
+.form-input-field {
+  display: block;
+  margin: 0 0 1rem 0;
+  border-radius: 0.5rem;
+  height: 1.7rem;
+  width: 270px;
+  outline: none;
+  border: 1px solid gray;
+}
+
+.primary-btn {
+  cursor: pointer;
+  background-color: $default-red;
+  color: $second-color;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 2.5rem;
+}
+
 @import "./sass-sections/header.scss";
 @import "./sass-sections/footer.scss";
 @import "./sass-sections/nav-menu.scss";
@@ -64,5 +83,6 @@ a {
 @import "./sass-sections/about-us.scss";
 @import "./sass-sections/salons.scss";
 @import "./sass-sections/restaurant.scss";
+@import "./sass-sections/login.scss";
 @import "./sass-sections/movies.scss";
 @import "./sass-sections/registration.scss";

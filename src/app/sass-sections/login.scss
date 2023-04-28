@@ -1,0 +1,23 @@
+.login-container {
+  background-color: $bg-color;
+  color: $second-color;
+  padding: 2rem;
+  display: flex;
+
+  div {
+    margin: auto;
+
+    h1 {
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-top: 1rem;
+
+      span {
+        color: $default-red;
+        margin-left: 1rem;
+      }
+    }
+  }
+}
