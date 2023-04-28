@@ -1,0 +1,36 @@
+.registration {
+  margin-top: 5rem;
+  background-color: $bg-color;
+  margin: auto, 0;
+  border-radius: 0.4rem;
+  width: fit-content;
+  padding: 10rem;
+  color: $second-color;
+
+  h2 {
+    margin-bottom: 2rem;
+  }
+
+  .formInput {
+    color: white;
+  }
+
+  form {
+    padding: 2rem;
+    text-align: left;
+  }
+
+  input {
+    padding: 0.5rem;
+    width: 15rem;
+    border-radius: 0.4rem;
+    margin: 0.5rem;
+    text-align: left;
+  }
+
+  .text {
+    color: white;
+    display: block;
+    margin: 0 0 1rem 0;
+  }
+}

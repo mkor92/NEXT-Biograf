@@ -5,7 +5,7 @@ async function getMovie(id: any) {
   return res.json();
 }
 
-export default async function movieInfo({ params: { movieId } }) {
+export default async function movieInfo({ params: { movieId } }: any) {
   console.log(`hej ${movieId}`);
   const movieData = getMovie(movieId);
   const [movie] = await Promise.all([movieData]);
