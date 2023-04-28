@@ -2,6 +2,201 @@ import { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+const MOCKSCREENING = [
+  {
+    available: false,
+    place: 1,
+  },
+  {
+    available: true,
+    place: 2,
+  },
+  {
+    available: true,
+    place: 3,
+  },
+  {
+    available: true,
+    place: 4,
+  },
+  {
+    available: true,
+    place: 5,
+  },
+  {
+    available: true,
+    place: 6,
+  },
+  {
+    available: false,
+    place: 7,
+  },
+  {
+    available: false,
+    place: 8,
+  },
+  {
+    available: true,
+    place: 9,
+  },
+  {
+    available: true,
+    place: 10,
+  },
+  {
+    available: true,
+    place: 11,
+  },
+  {
+    available: true,
+    place: 12,
+  },
+  {
+    available: true,
+    place: 13,
+  },
+  {
+    available: true,
+    place: 14,
+  },
+  {
+    available: true,
+    place: 15,
+  },
+  {
+    available: true,
+    place: 16,
+  },
+  {
+    available: true,
+    place: 17,
+  },
+  {
+    available: true,
+    place: 18,
+  },
+  {
+    available: true,
+    place: 19,
+  },
+  {
+    available: true,
+    place: 20,
+  },
+  {
+    available: false,
+    place: 21,
+  },
+  {
+    available: true,
+    place: 22,
+  },
+  {
+    available: true,
+    place: 23,
+  },
+  {
+    available: true,
+    place: 24,
+  },
+  {
+    available: true,
+    place: 25,
+  },
+  {
+    available: true,
+    place: 26,
+  },
+  {
+    available: true,
+    place: 27,
+  },
+  {
+    available: true,
+    place: 28,
+  },
+  {
+    available: true,
+    place: 29,
+  },
+  {
+    available: true,
+    place: 30,
+  },
+  {
+    available: true,
+    place: 31,
+  },
+  {
+    available: true,
+    place: 32,
+  },
+  {
+    available: true,
+    place: 33,
+  },
+  {
+    available: true,
+    place: 34,
+  },
+  {
+    available: true,
+    place: 35,
+  },
+  {
+    available: true,
+    place: 36,
+  },
+  {
+    available: true,
+    place: 37,
+  },
+  {
+    available: true,
+    place: 38,
+  },
+  {
+    available: true,
+    place: 39,
+  },
+  {
+    available: true,
+    place: 40,
+  },
+  {
+    available: true,
+    place: 41,
+  },
+  {
+    available: true,
+    place: 42,
+  },
+  {
+    available: true,
+    place: 43,
+  },
+  {
+    available: true,
+    place: 44,
+  },
+  {
+    available: true,
+    place: 45,
+  },
+  {
+    available: true,
+    place: 46,
+  },
+  {
+    available: true,
+    place: 47,
+  },
+  {
+    available: true,
+    place: 48,
+  },
+];
+
 const TicketsPage: FC = () => {
   return (
     <section className="sec-cont tickets-container">
@@ -37,58 +232,17 @@ const TicketsPage: FC = () => {
         </div>
 
         <div className="seat-container">
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
-          <div className="seat"></div>
+          {MOCKSCREENING.map((seat) => {
+            return (
+              <div
+                className={
+                  seat.available ? 'seat-available' : 'seat-not-available'
+                }
+              >
+                {seat.place}
+              </div>
+            );
+          })}
         </div>
       </div>
 
