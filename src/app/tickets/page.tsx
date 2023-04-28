@@ -235,6 +235,7 @@ const TicketsPage: FC = () => {
           {MOCKSCREENING.map((seat) => {
             return (
               <div
+                key={seat.place}
                 className={
                   seat.available ? 'seat-available' : 'seat-not-available'
                 }
@@ -263,8 +264,12 @@ const TicketsPage: FC = () => {
       </div>
 
       <div className="divider"></div>
-      <button className="primary-btn">Logga In</button>
-      <button className="primary-btn">Fortsätt som gäst</button>
+      <Link href="/login" className="primary-btn">
+        Logga in
+      </Link>
+      <Link href="/guest" className="primary-btn">
+        Gäst
+      </Link>
     </section>
   );
 };
