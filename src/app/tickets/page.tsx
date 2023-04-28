@@ -1,4 +1,5 @@
-import { FC } from 'react';
+'use client';
+import { FC, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -198,6 +199,8 @@ const MOCKSCREENING = [
 ];
 
 const TicketsPage: FC = () => {
+  const [ticketCount, setTicketCount] = useState(0);
+
   return (
     <section className="sec-cont tickets-container">
       <h1>Biljettbokning</h1>
@@ -217,9 +220,21 @@ const TicketsPage: FC = () => {
       <h2>Välj antal biljetter</h2>
       <div className="number-of-tickets-container">
         <h3>Antal biljetter</h3>
-        <div className="plus-minus">-</div>
-        <div>2</div>
-        <div className="plus-minus">+</div>
+        <div
+          onClick={() =>
+            setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)
+          }
+          className="plus-minus"
+        >
+          -
+        </div>
+        <div>{ticketCount}</div>
+        <div
+          onClick={() => setTicketCount(ticketCount + 1)}
+          className="plus-minus"
+        >
+          +
+        </div>
       </div>
 
       <h2>Välj platser</h2>
@@ -260,7 +275,7 @@ const TicketsPage: FC = () => {
 
       <div className="total-sum-container">
         <h2>Att betala:</h2>
-        <h2>300kr</h2>
+        <h2>{ticketCount * 150}kr</h2>
       </div>
 
       <div className="divider"></div>
