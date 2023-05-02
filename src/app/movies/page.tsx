@@ -14,7 +14,7 @@ export default async function Movies() {
           {payload.map((movie) => {
             return (
               <li key={movie._id} className="movies-list-item">
-                <Link href="/movies">
+                <Link href={`/movies/${movie._id}`}>
                   <Image
                     src={movie.assets[0]}
                     alt="movie image"
