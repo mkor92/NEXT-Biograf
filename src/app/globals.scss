@@ -33,24 +33,6 @@ main {
   max-width: 1000px;
   margin: 0 auto;
 }
-.form-input-field {
-  display: block;
-  margin: 0 0 1rem 0;
-  border-radius: 0.5rem;
-  height: 1.7rem;
-  width: 270px;
-  outline: none;
-  border: 1px solid gray;
-}
-
-.primary-btn {
-  cursor: pointer;
-  background-color: $default-red;
-  color: $second-color;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.6rem 2.5rem;
-}
 
 a {
   color: white;

@@ -1,18 +1,26 @@
-import React from "react";
+import { FC, useState } from "react";
 
-export default function FormInput(props) {
-  { label, errorMsg, onChange, id, ...inputProps } = props;
-  return (
-    <div className="formInput">
-      <label htmlFor={label} className="text">
-        {text}
-      </label>
-      <input type={type} id={id} className="form-input-field" onChange={onChange} />
-      <span>{errorMsg}</span>
-    </div>
-  );
+interface Props {
+  label: string;
+  errorMsg: string;
+  id: string;
+  onChange: (e: any) => void;
 }
 
+const FormInput: FC<Props> = ({ label, errorMsg, onChange, id, ...inputProps }) => {
+  const [focus, setFocus] = useState(false);
+
+  const handleFocus = (e: any) => {
+    setFocus(true);
+  };
+  return (
+    <div className="formInput">
+      <label>{label}</label>
+      <input {...inputProps} onChange={onChange} onBlur={handleFocus} focus={focus.toString()} />
+      <span className="error-msg">{errorMsg}</span>
+    </div>
+  );
+};
 
 /*const FormInput = (props) => {
   const [focused, setFocused] = useState(false);
@@ -40,3 +48,4 @@ export default function FormInput(props) {
 };
 
 export default FormInput;*/
+export default FormInput;
