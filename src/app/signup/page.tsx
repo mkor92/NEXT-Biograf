@@ -18,9 +18,9 @@ export default function signup() {
       name: "name",
       type: "text",
       errorMsg:
-        "För- och efternamn borde vara mellan 3-30 tecken och får inte innehålla några specialtecken",
+        "För- och efternamn borde vara mellan 4-30 tecken och får inte innehålla några specialtecken",
       label: "För- och efternamn",
-      pattern: "^[A-ZÅÄÖa-zåäö]{3,30}$",
+      pattern: "^[A-ZÅÄÖa-zåäö]+ [A-ZÅÄÖa-zåäö]{2,30}$",
       required: true,
     },
     {
@@ -37,7 +37,8 @@ export default function signup() {
       type: "email",
       errorMsg: "E-postadresserna stämmer inte överrens",
       label: "Bekräfta e-post",
-      pattern: regData.email,
+      pattern: [regData.email],
+      required: true,
     },
     {
       id: 4,
@@ -53,33 +54,26 @@ export default function signup() {
       id: 5,
       name: "cPassword",
       type: "password",
-
       errorMsg: "Lösenorden stämmer inte överrens",
       label: "Bekräfta lösenord",
-      pattern: regData.password,
+      pattern: [regData.password],
       required: true,
     },
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
   };
-  const onChange = (e) => {
+  const onChange = (e: any) => {
     setRegData({ ...regData, [e.target.name]: e.target.value });
   };
-
+  // 👍
   return (
     <div className="registration sec-cont">
       <form onSubmit={handleSubmit}>
         <h2>Registrera dig</h2>
         {inputs.map((input) => (
-          <FormInput
-            key={input.id}
-            {...input}
-            value={regData[input.name]}
-            onChange={onChange}
-            className="form-input-field"
-          />
+          <FormInput key={input.id} {...input} onChange={onChange} />
         ))}
         <button
           className="primary-btn"
