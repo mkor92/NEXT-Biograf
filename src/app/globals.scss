@@ -16,6 +16,7 @@ $bg-color: rgba($first-color, 0.8);
 body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
     url('/bg.jpg');
+
   background-size: cover;
   min-height: 100vh;
   display: flex;
@@ -36,7 +37,7 @@ main {
 }
 
 a {
-  color: inherit;
+  color: $second-color;
   text-decoration: none;
 }
 
@@ -68,3 +69,4 @@ a {
 @import './sass-sections/restaurant.scss';
 @import './sass-sections/login.scss';
 @import './sass-sections/tickets.scss';
+@import './sass-sections/movies.scss';
