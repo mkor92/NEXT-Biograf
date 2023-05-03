@@ -16,6 +16,7 @@ $bg-color: rgba($first-color, 0.8);
 body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
     url('/bg.jpg');
+
   background-size: cover;
   min-height: 100vh;
   display: flex;
@@ -55,6 +56,8 @@ a {
 .form-input-field {
   display: block;
   margin: 0 0 1rem 0;
+  padding: 0.5rem;
+  font-size: 1rem;
   border-radius: 0.5rem;
   height: 1.7rem;
   width: 270px;
@@ -67,8 +70,17 @@ a {
   background-color: $default-red;
   color: $second-color;
   border: none;
+  font-weight: bold;
   border-radius: 0.5rem;
   padding: 0.6rem 2.5rem;
+}
+
+.cancel-btn {
+  display: block;
+  text-decoration: underline;
+  margin-top: 3rem;
+  color: $forth-color;
+  font-size: 0.8rem;
 }
 
 .cancel-btn {
@@ -89,3 +101,4 @@ a {
 @import './sass-sections/login.scss';
 @import './sass-sections/tickets.scss';
 @import './sass-sections/movies.scss';
+@import './sass-sections/registration.scss';

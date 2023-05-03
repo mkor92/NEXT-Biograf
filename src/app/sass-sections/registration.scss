@@ -1,0 +1,38 @@
+.registration {
+  background-color: $bg-color;
+  margin: 2rem, 0;
+  border-radius: 0.4rem;
+  width: fit-content;
+  padding: 2rem;
+  color: $second-color;
+
+  h2 {
+    margin-bottom: 2rem;
+  }
+
+  .error-msg {
+    color: $default-red;
+    font-size: 0.9rem;
+    display: none;
+    width: 270px;
+  }
+  input:invalid[data-error-msg="true"] ~ .error-msg {
+    display: block;
+  }
+
+  .formInput {
+    margin-bottom: 1.5rem;
+    color: $second-color;
+  }
+
+  form {
+    padding: 2rem;
+    text-align: left;
+    margin-bottom: 1.5rem;
+  }
+
+  .text {
+    color: $second-color;
+    display: block;
+  }
+}
