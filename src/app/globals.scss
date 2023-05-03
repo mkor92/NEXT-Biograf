@@ -14,8 +14,8 @@ $bg-color: rgba($first-color, 0.8);
 }
 
 body {
-
-  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("/bg.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url('/bg.jpg');
 
   background-size: cover;
   min-height: 100vh;
@@ -25,6 +25,18 @@ body {
 
 main {
   width: 100%;
+}
+
+h1 {
+  font-size: 2.3rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.3rem;
 }
 
 .sec {
@@ -63,6 +75,13 @@ a {
   padding: 0.6rem 2.5rem;
 }
 
+.cancel-btn {
+  display: block;
+  text-decoration: underline;
+  margin-top: 3rem;
+  color: $forth-color;
+  font-size: 0.8rem;
+}
 
 .cancel-btn {
   display: block;
@@ -72,14 +91,14 @@ a {
   font-size: 0.8rem;
 }
 
-@import "./sass-sections/header.scss";
-@import "./sass-sections/footer.scss";
-@import "./sass-sections/nav-menu.scss";
-@import "./sass-sections/under-construction.scss";
-@import "./sass-sections/about-us.scss";
-@import "./sass-sections/salons.scss";
-@import "./sass-sections/restaurant.scss";
-@import "./sass-sections/login.scss";
-@import "./sass-sections/movies.scss";
-@import "./sass-sections/registration.scss";
-
+@import './sass-sections/header.scss';
+@import './sass-sections/footer.scss';
+@import './sass-sections/nav-menu.scss';
+@import './sass-sections/under-construction.scss';
+@import './sass-sections/about-us.scss';
+@import './sass-sections/salons.scss';
+@import './sass-sections/restaurant.scss';
+@import './sass-sections/login.scss';
+@import './sass-sections/tickets.scss';
+@import './sass-sections/movies.scss';
+@import './sass-sections/registration.scss';
