@@ -1,8 +1,9 @@
-import "./globals.scss";
+import "@site/globals.scss";
 import { Poppins } from "next/font/google";
-import Nav from "./components/Nav";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import NextTopLoader from "nextjs-toploader";
+import Nav from "@/app/components/Nav";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 
 const poppins = Poppins({
   weight: ["500", "600", "700", "900"],
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: RootProps) {
   return (
     <html lang="en">
       <body className={poppins.className}>
+        <NextTopLoader color="#dedcdc" height={2} showSpinner={false} />
         <Header />
         <Nav />
 
