@@ -14,10 +14,8 @@ $bg-color: rgba($first-color, 0.8);
 }
 
 body {
-
   background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
     url('/bg.jpg');
-
   background-size: cover;
   min-height: 100vh;
   display: flex;
@@ -69,4 +67,4 @@ a {
 @import './sass-sections/salons.scss';
 @import './sass-sections/restaurant.scss';
 @import './sass-sections/login.scss';
-@import "./sass-sections/movies.scss";
+@import './sass-sections/movies.scss';

@@ -2,12 +2,15 @@
 const nextConfig = {
   experimental: {
     appDir: true,
-    serverComponentsExternalPackages: ["mongoose"]
+    serverComponentsExternalPackages: ['mongoose'],
   },
   webpack(config) {
-    config.experiments = { ...config.experiments, topLevelAwait: true }
-    return config
+    config.experiments = { ...config.experiments, topLevelAwait: true };
+    return config;
   },
-}
+  images: {
+    domains: ['cdn.discordapp.com'],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
