@@ -14,14 +14,7 @@ $bg-color: rgba($first-color, 0.8);
 }
 
 body {
-<<<<<<< HEAD
   background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("/bg.jpg");
-=======
-
-  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url('/bg.jpg');
-
->>>>>>> e73654247a51d7004554a9959f5b9f92b6864d51
   background-size: cover;
   min-height: 100vh;
   display: flex;
@@ -65,12 +58,12 @@ a {
   padding: 0.6rem 2.5rem;
 }
 
-@import './sass-sections/header.scss';
-@import './sass-sections/footer.scss';
-@import './sass-sections/nav-menu.scss';
-@import './sass-sections/under-construction.scss';
-@import './sass-sections/about-us.scss';
-@import './sass-sections/salons.scss';
-@import './sass-sections/restaurant.scss';
-@import './sass-sections/login.scss';
+@import "./sass-sections/header.scss";
+@import "./sass-sections/footer.scss";
+@import "./sass-sections/nav-menu.scss";
+@import "./sass-sections/under-construction.scss";
+@import "./sass-sections/about-us.scss";
+@import "./sass-sections/salons.scss";
+@import "./sass-sections/restaurant.scss";
+@import "./sass-sections/login.scss";
 @import "./sass-sections/movies.scss";
