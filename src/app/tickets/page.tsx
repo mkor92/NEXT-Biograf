@@ -217,9 +217,8 @@ const TicketsPage: FC = () => {
         </div>
       </div>
 
-      <h2>Välj antal biljetter</h2>
+      <h2 className="header-two">Välj antal biljetter</h2>
       <div className="number-of-tickets-container">
-        <h3>Antal biljetter</h3>
         <div
           onClick={() =>
             setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)
@@ -228,7 +227,7 @@ const TicketsPage: FC = () => {
         >
           -
         </div>
-        <div>{ticketCount}</div>
+        <div className="ticket-count">{ticketCount}</div>
         <div
           onClick={() => setTicketCount(ticketCount + 1)}
           className="plus-minus"
@@ -237,7 +236,7 @@ const TicketsPage: FC = () => {
         </div>
       </div>
 
-      <h2>Välj platser</h2>
+      <h2 className="header-two">Välj platser</h2>
 
       <div className="movie-screen-seat-container">
         <div className="movie-screen-container">
