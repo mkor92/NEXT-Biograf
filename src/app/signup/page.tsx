@@ -4,14 +4,19 @@ import FormInput from "../components/FormInput";
 import Link from "next/link";
 
 export default function signup() {
-  const [regData, setRegData] = useState({
-    name: String,
-    email: String,
-    cEmail: String,
-    password: String,
-    cPassWord: String,
+  const [regData, setRegData] = useState<{
+    name: string;
+    email: string;
+    cEmail: string;
+    password: string;
+    cPassword: string;
+  }>({
+    name: "",
+    email: "",
+    cEmail: "",
+    password: "",
+    cPassword: "",
   });
-
   const inputs = [
     {
       id: 1,
