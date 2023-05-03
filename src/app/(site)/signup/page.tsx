@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import FormInput from "../components/FormInput";
+import FormInput from "@/app/components/FormInput";
 import Link from "next/link";
 
 export default function signup() {
@@ -84,7 +84,8 @@ export default function signup() {
           className="primary-btn"
           onClick={() => {
             console.log(regData);
-          }}>
+          }}
+        >
           Registrera
         </button>
         <Link href="/" className="cancel-btn">
