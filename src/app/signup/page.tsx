@@ -72,7 +72,7 @@ export default function signup() {
   const onChange = (e: any) => {
     setRegData({ ...regData, [e.target.name]: e.target.value });
   };
-  // 👍
+
   return (
     <div className="registration sec-cont">
       <form onSubmit={handleSubmit}>
