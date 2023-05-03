@@ -60,6 +60,14 @@ a {
   padding: 0.6rem 2.5rem;
 }
 
+.cancel-btn {
+  display: block;
+  text-decoration: underline;
+  margin-top: 3rem;
+  color: $forth-color;
+  font-size: 0.8rem;
+}
+
 @import './sass-sections/header.scss';
 @import './sass-sections/footer.scss';
 @import './sass-sections/nav-menu.scss';

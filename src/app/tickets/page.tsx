@@ -285,6 +285,9 @@ const TicketsPage: FC = () => {
       <Link href="/guest" className="primary-btn">
         Gäst
       </Link>
+      <Link href="/" className="cancel-btn">
+        Avbryt
+      </Link>
     </section>
   );
 };
