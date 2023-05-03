@@ -16,7 +16,7 @@
     display: none;
     width: 270px;
   }
-  input:invalid[id="true"] ~ .error-msg {
+  input:invalid[data-error-msg="true"] ~ .error-msg {
     display: block;
   }
 

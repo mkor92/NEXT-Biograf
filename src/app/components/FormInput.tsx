@@ -3,6 +3,7 @@ import { FC, useState } from "react";
 interface Props {
   label: string;
   errorMsg: string;
+
   onChange: (e: any) => void;
 }
 
@@ -20,7 +21,7 @@ const FormInput: FC<Props> = ({ label, errorMsg, onChange, ...inputProps }) => {
         {...inputProps}
         onChange={onChange}
         onBlur={handleFocus}
-        id={focus.toString()}
+        data-error-msg={focus.toString()}
       />
       <span className="error-msg">{errorMsg}</span>
     </div>
