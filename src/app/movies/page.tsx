@@ -2,7 +2,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function Movies() {
-  const res = await fetch('http://localhost:3000/api/movies');
+  const res = await fetch('http://localhost:3000/api/movies', {
+    next: { revalidate: 1 },
+  });
+
   const payload = await res.json();
 
   return (

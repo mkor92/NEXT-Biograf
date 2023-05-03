@@ -3,7 +3,6 @@ import Movie from '@/models/movie.model';
 db();
 
 export async function GET(request: Request) {
-  let res = await Movie.find();
-  let data = JSON.parse(JSON.stringify(res));
-  return new Response(JSON.stringify(data));
+  const movies = await Movie.find();
+  return new Response(JSON.stringify(movies));
 }
