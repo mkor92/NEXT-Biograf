@@ -14,7 +14,9 @@ $bg-color: rgba($first-color, 0.8);
 }
 
 body {
+
   background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("/bg.jpg");
+
   background-size: cover;
   min-height: 100vh;
   display: flex;
@@ -61,6 +63,7 @@ a {
   padding: 0.6rem 2.5rem;
 }
 
+
 .cancel-btn {
   display: block;
   text-decoration: underline;
@@ -79,3 +82,4 @@ a {
 @import "./sass-sections/login.scss";
 @import "./sass-sections/movies.scss";
 @import "./sass-sections/registration.scss";
+
