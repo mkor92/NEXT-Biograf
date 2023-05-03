@@ -18,6 +18,10 @@ export default function Header() {
       label: "Presentkort",
       link: "/UC",
     },
+    {
+      label: "Logga in",
+      link: "/login",
+    },
   ];
   return (
     <header>

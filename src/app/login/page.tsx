@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { FC, useState } from 'react';
-import Link from 'next/link';
+import { FC, useState } from "react";
+import Link from "next/link";
 
 const LoginForm: FC = () => {
   const [userData, setUserData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   console.log(userData);
 
