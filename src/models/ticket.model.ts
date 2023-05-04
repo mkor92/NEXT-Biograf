@@ -1,20 +1,15 @@
 import { Schema, model, models, Model, Document } from 'mongoose';
 
 export interface ITicket extends Document {
-    movie: string,
-    time: Date | string,
+    screening: string,
     seat: number
     email: string
 }
 
 const ticketSchema = new Schema({
-    movie: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    time: {
-        type: Date,
+    screening: {
+        type: Schema.Types.ObjectId,
+        ref: "Screening",
         required: true
     },
     seat: {
