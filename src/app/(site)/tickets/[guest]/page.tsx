@@ -1,17 +1,24 @@
 "use client";
 import { useState } from "react";
-import FormInput from "../components/FormInput";
+import FormInput from "@/app/components/FormInput";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 export default function signup() {
+  const searchParams = useSearchParams();
+  const tickets = searchParams.get("tickets");
+  console.log(tickets);
+
   const [guestData, setGuestData] = useState<{
     name: string;
     email: string;
     number: string;
+    tickets: string;
   }>({
     name: "",
     email: "",
     number: "",
+    tickets: `${tickets}`,
   });
   const inputs = [
     {

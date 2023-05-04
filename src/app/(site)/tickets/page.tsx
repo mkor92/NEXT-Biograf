@@ -1,7 +1,7 @@
-'use client';
-import { FC, useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+"use client";
+import { FC, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 const MOCKSCREENING = [
   {
@@ -205,12 +205,7 @@ const TicketsPage: FC = () => {
     <section className="sec-cont tickets-container">
       <h1>Biljettbokning</h1>
       <div className="img-text-container">
-        <Image
-          src="/images/encanto.jpg"
-          alt="movie image"
-          width={141.75}
-          height={210}
-        ></Image>
+        <Image src="/images/encanto.jpg" alt="movie image" width={141.75} height={210}></Image>
         <div>
           <h2>Encanto</h2>
           <p>Stora salongen idag, Onsdag 17.00</p>
@@ -220,18 +215,12 @@ const TicketsPage: FC = () => {
       <h2 className="header-two">Välj antal biljetter</h2>
       <div className="number-of-tickets-container">
         <div
-          onClick={() =>
-            setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)
-          }
-          className="plus-minus"
-        >
+          onClick={() => setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)}
+          className="plus-minus">
           -
         </div>
         <div className="ticket-count">{ticketCount}</div>
-        <div
-          onClick={() => setTicketCount(ticketCount + 1)}
-          className="plus-minus"
-        >
+        <div onClick={() => setTicketCount(ticketCount + 1)} className="plus-minus">
           +
         </div>
       </div>
@@ -250,10 +239,7 @@ const TicketsPage: FC = () => {
             return (
               <div
                 key={seat.place}
-                className={
-                  seat.available ? 'seat-available' : 'seat-not-available'
-                }
-              >
+                className={seat.available ? "seat-available" : "seat-not-available"}>
                 {seat.place}
               </div>
             );
@@ -281,7 +267,14 @@ const TicketsPage: FC = () => {
       <Link href="/login" className="primary-btn">
         Logga in
       </Link>
-      <Link href="/guest" className="primary-btn">
+      <Link
+        href={{
+          pathname: "/tickets/guest",
+          query: {
+            tickets: `${ticketCount}`,
+          },
+        }}
+        className="primary-btn">
         Gäst
       </Link>
       <Link href="/" className="cancel-btn">
