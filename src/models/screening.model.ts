@@ -1,27 +1,11 @@
 import { Schema, model, models, Model, Document } from 'mongoose';
 
-export interface ISeat {
-    available: boolean,
-    place: number
-}
-
 export interface IScreening extends Document {
     salon: string,
     time: Date | string,
     movie: string,
-    seats: [ISeat]
+    seats: number
 }
-
-const seatSchema = new Schema({
-    available: {
-        type: Boolean,
-        default: false
-    },
-    place: {
-        type: Number,
-        unique: true
-    }
-});
 
 const screeningSchema = new Schema({
     salon: {
@@ -37,8 +21,7 @@ const screeningSchema = new Schema({
         ref: "Movie",
         required: true
     },
-    seats: [seatSchema]
+    seats: Number
 });
-
 
 export default models.Screening as Model<IScreening> || model<IScreening>("Screening", screeningSchema);
