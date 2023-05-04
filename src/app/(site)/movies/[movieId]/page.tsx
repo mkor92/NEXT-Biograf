@@ -1,8 +1,8 @@
-import React from "react";
-import { notFound } from "next/navigation";
+import React from 'react';
+import { notFound } from 'next/navigation';
 
 async function getMovie(id: any) {
-  const res = await fetch(`https://plankton-app-xhkom.ondigitalocean.app/api/movies/${id}`);
+  const res = await fetch(`http://localhost:3000/api/movies/${id}`);
   return res.json();
 }
 
