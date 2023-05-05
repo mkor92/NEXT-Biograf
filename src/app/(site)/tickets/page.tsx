@@ -1,6 +1,6 @@
 'use client';
 export const dynamic = 'force-dynamic';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -100,7 +100,7 @@ const TicketsPage: FC = () => {
                     : 'seat-available'
                 }
               >
-                {seat.seatNumber}
+                {/* {seat.seatNumber} */}
               </div>
             );
           })}
@@ -108,7 +108,7 @@ const TicketsPage: FC = () => {
       </div>
 
       <div className="choose-seat-container">
-        <div className="choosed-seat">☑️</div>
+        <div className="choosed-seat"></div>
         <p>Vald plats</p>
       </div>
       <div className="choose-seat-container">
