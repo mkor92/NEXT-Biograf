@@ -5,8 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const TicketsPage: FC = () => {
-  const [ticketCount, setTicketCount] = useState(0);
-
   enum Seat {
     available,
     booked,
@@ -14,10 +12,13 @@ const TicketsPage: FC = () => {
   }
 
   let numberOfSeats = 48;
-  let seatsArray = [];
+  let initialSeatsArray = [];
   for (let i = 1; i <= numberOfSeats; i++) {
-    seatsArray.push({ status: Seat.available, seatNumber: i });
+    initialSeatsArray.push({ status: Seat.available, seatNumber: i });
   }
+  const [ticketCount, setTicketCount] = useState(0);
+  const [seatsArray, setSeatsArray] = useState(initialSeatsArray);
+  console.log(seatsArray);
 
   return (
     <section className="sec-cont tickets-container">
@@ -69,7 +70,18 @@ const TicketsPage: FC = () => {
               <div
                 key={seat.seatNumber}
                 onClick={() => {
-                  console.log(`clicked ${seat.seatNumber}`);
+                  console.log(seat.seatNumber);
+                  const newArray = seatsArray.map((item) => {
+                    if (item.seatNumber == seat.seatNumber) {
+                      return {
+                        status: Seat.choosed,
+                        seatNumber: seat.seatNumber,
+                      };
+                    } else {
+                      return item;
+                    }
+                  });
+                  setSeatsArray(newArray);
                 }}
                 className={
                   seat.status == Seat.booked
