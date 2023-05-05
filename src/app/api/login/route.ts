@@ -1,26 +1,62 @@
 import { db } from '@/utils/db';
 import User from '@/models/user.model';
 import { NextResponse } from 'next/server';
+import { sign as jwtSign } from 'jsonwebtoken';
 db();
 
 export async function POST(request: Request) {
-    const data = await request.json();
-    if (!data.email || !data.password)
-        return NextResponse.json({ msg: 'Missing arguments' }, { status: 400 });
+	const body = await request.json();
 
-    const user = await User.findOne({ email: data.email });
-    if (!user)
-        return NextResponse.json(
-            { msg: 'Wrong email or password' },
-            { status: 400 }
-        );
+	// Validation
+	if (!body.email || !body.password)
+		return NextResponse.json({ msg: 'Missing arguments' }, { status: 400 });
 
-    const correctPassowrd = await user.comparePassword(data.password);
-    if (!correctPassowrd)
-        return NextResponse.json(
-            { msg: 'Wrong email or password' },
-            { status: 400 }
-        );
+	try {
+		const user = await User.findOne({ email: body.email });
 
-    return NextResponse.json({ msg: 'Logged in!' }, { status: 200 });
+		if (!user)
+			return NextResponse.json(
+				{ msg: 'Wrong email or password' },
+				{ status: 400 }
+			);
+
+		const correctPassoword = await user.comparePassword(body.password);
+		if (!correctPassoword)
+			return NextResponse.json(
+				{ msg: 'Wrong email or password' },
+				{ status: 400 }
+			);
+
+		// JWT AUTH
+		const expDate = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7;
+
+		const token = jwtSign(
+			{
+				exp: expDate,
+				email: user.email,
+				name: user.name,
+			},
+			process.env.JWT_SECRET
+		);
+
+		const response = NextResponse.json({ msg: 'Logged in!' }, { status: 200 });
+
+		// Set token in cookies
+		response.cookies.set({
+			name: 'jwt',
+			value: token,
+			httpOnly: true,
+			maxAge: expDate,
+			secure: process.env.NODE_ENV === 'production',
+			sameSite: 'strict',
+			path: '/',
+		});
+
+		return response;
+	} catch {
+		return NextResponse.json(
+			{ msg: 'Serverside error, try again later!' },
+			{ status: 500 }
+		);
+	}
 }
