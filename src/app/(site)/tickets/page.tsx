@@ -14,7 +14,23 @@ const TicketsPage: FC = () => {
         }
       );
       const payload = await res.json();
-      setTicketsOfOneScreening(payload);
+
+      let numberOfSeats = 48;
+      let initialSeatsArray = [];
+      let bookedSeatsArray: number[] = payload.map(
+        (ticket: { status: number; seat: number }) => {
+          return ticket.seat;
+        }
+      );
+
+      for (let i = 1; i <= numberOfSeats; i++) {
+        if (bookedSeatsArray.includes(i)) {
+          initialSeatsArray.push({ status: Seat.booked, seatNumber: i });
+        } else {
+          initialSeatsArray.push({ status: Seat.available, seatNumber: i });
+        }
+      }
+      setSeatsArray(initialSeatsArray);
     };
     fetchData();
   }, []);
@@ -25,18 +41,10 @@ const TicketsPage: FC = () => {
     choosed,
   }
 
-  let numberOfSeats = 48;
-  let initialSeatsArray = [];
-  for (let i = 1; i <= numberOfSeats; i++) {
-    initialSeatsArray.push({ status: Seat.available, seatNumber: i });
-  }
   const [ticketCount, setTicketCount] = useState(0);
-  const [seatsArray, setSeatsArray] = useState(initialSeatsArray);
-  const [ticketsOfOneScreening, setTicketsOfOneScreening] = useState<
-    [] | { screening: ''; seat: number; email: string }[]
+  const [seatsArray, setSeatsArray] = useState<
+    [] | { status: Seat; seatNumber: number }[]
   >([]);
-
-  console.log(ticketsOfOneScreening);
 
   return (
     <section className="sec-cont tickets-container">
