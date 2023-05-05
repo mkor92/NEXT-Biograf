@@ -1,10 +1,24 @@
 'use client';
 export const dynamic = 'force-dynamic';
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 const TicketsPage: FC = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(
+        'http://localhost:3000/api/tickets/64536ba84157b856e74f0a37',
+        {
+          next: { revalidate: 1 },
+        }
+      );
+      const payload = await res.json();
+      setTicketsOfOneScreening(payload);
+    };
+    fetchData();
+  }, []);
+
   enum Seat {
     available,
     booked,
@@ -18,7 +32,11 @@ const TicketsPage: FC = () => {
   }
   const [ticketCount, setTicketCount] = useState(0);
   const [seatsArray, setSeatsArray] = useState(initialSeatsArray);
-  console.log(seatsArray);
+  const [ticketsOfOneScreening, setTicketsOfOneScreening] = useState<
+    [] | { screening: ''; seat: number; email: string }[]
+  >([]);
+
+  console.log(ticketsOfOneScreening);
 
   return (
     <section className="sec-cont tickets-container">
@@ -70,7 +88,6 @@ const TicketsPage: FC = () => {
               <div
                 key={seat.seatNumber}
                 onClick={() => {
-                  console.log(seat.seatNumber);
                   const newArray = seatsArray.map((item) => {
                     if (item.seatNumber == seat.seatNumber) {
                       if (item.status == Seat.available) {
