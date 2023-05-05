@@ -17,14 +17,14 @@ export async function POST(request: Request) {
 		if (!user)
 			return NextResponse.json(
 				{ msg: 'Wrong email or password' },
-				{ status: 400 }
+				{ status: 401 }
 			);
 
 		const correctPassoword = await user.comparePassword(body.password);
 		if (!correctPassoword)
 			return NextResponse.json(
 				{ msg: 'Wrong email or password' },
-				{ status: 400 }
+				{ status: 401 }
 			);
 
 		// JWT AUTH
