@@ -73,10 +73,19 @@ const TicketsPage: FC = () => {
                   console.log(seat.seatNumber);
                   const newArray = seatsArray.map((item) => {
                     if (item.seatNumber == seat.seatNumber) {
-                      return {
-                        status: Seat.choosed,
-                        seatNumber: seat.seatNumber,
-                      };
+                      if (item.status == Seat.available) {
+                        return {
+                          status: Seat.choosed,
+                          seatNumber: seat.seatNumber,
+                        };
+                      } else if (item.status == Seat.choosed) {
+                        return {
+                          status: Seat.available,
+                          seatNumber: seat.seatNumber,
+                        };
+                      } else {
+                        return item;
+                      }
                     } else {
                       return item;
                     }
