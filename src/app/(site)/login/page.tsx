@@ -2,10 +2,11 @@
 
 import { FC, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const LoginForm: FC = () => {
 	const router = useRouter();
+	const searchParams = useSearchParams();
 
 	const [userData, setUserData] = useState<{
 		email?: string;
@@ -26,7 +27,9 @@ const LoginForm: FC = () => {
 				body: JSON.stringify(userData),
 			});
 
-			if (res.ok) return router.push('/');
+			const path = searchParams.get('p');
+
+			if (res.ok) return router.push(path || '/');
 
 			const data = await res.json();
 			console.log(`HTTP-Error: ${res.status}`, data);

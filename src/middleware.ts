@@ -10,20 +10,26 @@ export async function middleware(req: NextRequest) {
 
 	// If token doesn't exist then redirect to login
 	if (jwt === undefined) {
-		return NextResponse.redirect(new URL('/login', req.url));
+		const requestedPage = req.nextUrl.pathname;
+		const url = req.nextUrl.clone();
+		url.pathname = `/login`;
+		url.search = `p=${requestedPage}`;
+		return NextResponse.redirect(url);
 	}
 
 	// Checks if the token is valid, if not redirect to login
 	try {
-		const { payload } = await jwtVerify(
+		await jwtVerify(
 			jwt.value,
 			new TextEncoder().encode(process.env.JWT_SECRET)
 		);
-		// console.log(payload);
 		return NextResponse.next();
 	} catch (error) {
-		console.log(error);
-		return NextResponse.redirect(new URL('/login', req.url));
+		const requestedPage = req.nextUrl.pathname;
+		const url = req.nextUrl.clone();
+		url.pathname = `/login`;
+		url.search = `p=${requestedPage}`;
+		return NextResponse.redirect(url);
 	}
 }
 
