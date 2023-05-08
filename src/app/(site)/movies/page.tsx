@@ -18,12 +18,7 @@ export default async function Movies() {
             return (
               <li key={movie._id} className="movies-list-item">
                 <Link href={`/movies/${movie._id}`}>
-                  <Image
-                    src={movie.assets[0]}
-                    alt="movie image"
-                    width={202.5}
-                    height={300}
-                  />
+                  <Image src={movie.assets[0]} alt="movie image" width={202.5} height={300} />
                   <h4 className="movie-title-text">{movie.name}</h4>
                 </Link>
               </li>
