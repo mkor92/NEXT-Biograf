@@ -53,7 +53,6 @@ const TicketsPage: FC = () => {
     <section className="sec-cont tickets-container">
       <h1>Biljettbokning</h1>
       <TicketMovieInfo />
-
       <TicketCount
         ticketCount={ticketCount}
         onClickMinus={() =>
@@ -61,15 +60,12 @@ const TicketsPage: FC = () => {
         }
         onClickPlus={() => setTicketCount(ticketCount + 1)}
       />
-
       <ChooseSeats
         seatsArray={seatsArray}
         ticketCount={ticketCount}
         onSetSeatsArray={(newArray) => setSeatsArray(newArray)}
       />
-
       <PaymentSum ticketCount={ticketCount} />
-
       <Link href="/login" className="primary-btn">
         Logga in
       </Link>
