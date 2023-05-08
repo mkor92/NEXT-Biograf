@@ -46,6 +46,16 @@ const TicketsPage: FC = () => {
     [] | { status: Seat; seatNumber: number }[]
   >([]);
 
+  // function numberOfChoosedSeats() {
+  //   let num = 0;
+  //   for (let obj of seatsArray) {
+  //     if (obj.status == Seat.choosed) {
+  //       num++;
+  //     }
+  //   }
+  //   console.log(num);
+  // }
+
   return (
     <section className="sec-cont tickets-container">
       <h1>Biljettbokning</h1>
@@ -96,13 +106,27 @@ const TicketsPage: FC = () => {
               <div
                 key={seat.seatNumber}
                 onClick={() => {
+                  let num = 0;
+                  for (let obj of seatsArray) {
+                    if (obj.status == Seat.choosed) {
+                      num++;
+                    }
+                  }
+
                   const newArray = seatsArray.map((item) => {
                     if (item.seatNumber == seat.seatNumber) {
                       if (item.status == Seat.available) {
-                        return {
-                          status: Seat.choosed,
-                          seatNumber: seat.seatNumber,
-                        };
+                        if (num < ticketCount) {
+                          return {
+                            status: Seat.choosed,
+                            seatNumber: seat.seatNumber,
+                          };
+                        } else {
+                          return {
+                            status: Seat.available,
+                            seatNumber: seat.seatNumber,
+                          };
+                        }
                       } else if (item.status == Seat.choosed) {
                         return {
                           status: Seat.available,
