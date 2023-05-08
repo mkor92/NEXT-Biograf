@@ -2,7 +2,7 @@
 export const dynamic = 'force-dynamic';
 import { FC, useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import TicketMovieInfo from '@/app/components/TicketMovieInfo';
 
 const TicketsPage: FC = () => {
   useEffect(() => {
@@ -46,31 +46,10 @@ const TicketsPage: FC = () => {
     [] | { status: Seat; seatNumber: number }[]
   >([]);
 
-  // function numberOfChoosedSeats() {
-  //   let num = 0;
-  //   for (let obj of seatsArray) {
-  //     if (obj.status == Seat.choosed) {
-  //       num++;
-  //     }
-  //   }
-  //   console.log(num);
-  // }
-
   return (
     <section className="sec-cont tickets-container">
       <h1>Biljettbokning</h1>
-      <div className="img-text-container">
-        <Image
-          src="/images/encanto.jpg"
-          alt="movie image"
-          width={141.75}
-          height={210}
-        ></Image>
-        <div>
-          <h2>Encanto</h2>
-          <p>Stora salongen idag, Onsdag 17.00</p>
-        </div>
-      </div>
+      <TicketMovieInfo />
 
       <h2 className="header-two">Välj antal biljetter</h2>
       <div className="number-of-tickets-container">
@@ -112,7 +91,6 @@ const TicketsPage: FC = () => {
                       num++;
                     }
                   }
-
                   const newArray = seatsArray.map((item) => {
                     if (item.seatNumber == seat.seatNumber) {
                       if (item.status == Seat.available) {
