@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic';
 import { FC, useState, useEffect } from 'react';
 import Link from 'next/link';
 import TicketMovieInfo from '@/app/components/TicketMovieInfo';
+import TicketCount from '@/app/components/TicketCount';
 
 const TicketsPage: FC = () => {
   useEffect(() => {
@@ -51,24 +52,13 @@ const TicketsPage: FC = () => {
       <h1>Biljettbokning</h1>
       <TicketMovieInfo />
 
-      <h2 className="header-two">Välj antal biljetter</h2>
-      <div className="number-of-tickets-container">
-        <div
-          onClick={() =>
-            setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)
-          }
-          className="plus-minus"
-        >
-          -
-        </div>
-        <div className="ticket-count">{ticketCount}</div>
-        <div
-          onClick={() => setTicketCount(ticketCount + 1)}
-          className="plus-minus"
-        >
-          +
-        </div>
-      </div>
+      <TicketCount
+        ticketCount={ticketCount}
+        onClickMinus={() =>
+          setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)
+        }
+        onClickPlus={() => setTicketCount(ticketCount + 1)}
+      />
 
       <h2 className="header-two">Välj platser</h2>
 
