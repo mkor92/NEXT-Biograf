@@ -2,42 +2,24 @@
 
 import { FC, useState } from 'react';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useAuth } from '@/app/context/AuthContext';
 
 const LoginForm: FC = () => {
-	const router = useRouter();
-	const searchParams = useSearchParams();
+	const { login } = useAuth();
 
 	const [userData, setUserData] = useState<{
-		email?: string;
-		password?: string;
-	}>();
+		email: string;
+		password: string;
+	}>({
+		email: '',
+		password: '',
+	});
 
 	// Form Submit
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		if (!userData?.email || !userData?.password) return;
-
-		try {
-			const res = await fetch('http://localhost:3000/api/login', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(userData),
-			});
-
-			const path = searchParams.get('p');
-
-			if (res.ok) return router.push(path || '/');
-
-			const data = await res.json();
-			console.log(`HTTP-Error: ${res.status}`, data);
-			return alert(data.msg);
-		} catch (error) {
-			console.log(error);
-			return alert('An error ocurred, try again!');
-		}
+		if (!userData.email || !userData.password) return;
+		await login(userData.email, userData.password);
 	};
 
 	// Input change listener

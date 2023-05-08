@@ -1,8 +1,12 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
 
 export async function middleware(req: NextRequest) {
+	const requestedPage = req.nextUrl.pathname;
+	const url = req.nextUrl.clone();
+	url.pathname = `/login`;
+	url.search = `p=${requestedPage}`;
+
 	// Gets the token from the client
 	const jwt = <{ name: string; value: string } | undefined>(
 		req.cookies.get('jwt')
@@ -10,11 +14,15 @@ export async function middleware(req: NextRequest) {
 
 	// If token doesn't exist then redirect to login
 	if (jwt === undefined) {
-		const requestedPage = req.nextUrl.pathname;
-		const url = req.nextUrl.clone();
-		url.pathname = `/login`;
-		url.search = `p=${requestedPage}`;
+		// Exceptions:
+		if (requestedPage === '/login' || requestedPage === 'register') {
+			return NextResponse.next();
+		}
 		return NextResponse.redirect(url);
+	}
+
+	if (requestedPage === '/login' || requestedPage === 'register') {
+		return NextResponse.redirect(new URL('/profile', req.nextUrl));
 	}
 
 	// Checks if the token is valid, if not redirect to login
@@ -23,16 +31,13 @@ export async function middleware(req: NextRequest) {
 			jwt.value,
 			new TextEncoder().encode(process.env.JWT_SECRET)
 		);
+
 		return NextResponse.next();
 	} catch (error) {
-		const requestedPage = req.nextUrl.pathname;
-		const url = req.nextUrl.clone();
-		url.pathname = `/login`;
-		url.search = `p=${requestedPage}`;
 		return NextResponse.redirect(url);
 	}
 }
 
 export const config = {
-	matcher: ['/profile'],
+	matcher: ['/profile', '/login', '/register'],
 };

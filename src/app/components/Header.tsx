@@ -1,6 +1,11 @@
+'use client';
+
 import Link from 'next/link';
+import { useAuth } from '@/app/context/AuthContext';
 
 export default function Header() {
+	const { user } = useAuth();
+
 	const menu = [
 		{
 			label: 'Hem',
@@ -18,10 +23,6 @@ export default function Header() {
 			label: 'Presentkort',
 			link: '/UC',
 		},
-		{
-			label: 'Logga in',
-			link: '/login',
-		},
 	];
 	return (
 		<header>
@@ -38,6 +39,20 @@ export default function Header() {
 									<Link href={li.link}>{li.label}</Link>
 								</li>
 							))}
+							{user && (
+								<>
+									<li className="header-menu-item">
+										<Link href={'/profile'}>Profile</Link>
+									</li>
+								</>
+							)}
+							{!user && (
+								<>
+									<li className="header-menu-item">
+										<Link href={'/login'}>Logga in</Link>
+									</li>
+								</>
+							)}
 						</menu>
 					</nav>
 				</div>

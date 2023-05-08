@@ -1,6 +1,7 @@
 import '@site/globals.scss';
 import { Poppins } from 'next/font/google';
 import NextTopLoader from 'nextjs-toploader';
+import AuthProvider from '@/app/context/AuthContext';
 import Nav from '@/app/components/Nav';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -25,13 +26,15 @@ export default function RootLayout({ children }: RootProps) {
 	return (
 		<html lang="en">
 			<body className={poppins.className}>
-				<NextTopLoader color="#dedcdc" height={2} showSpinner={false} />
-				<Header />
-				<Nav />
+				<AuthProvider>
+					<NextTopLoader color="#dedcdc" height={2} showSpinner={false} />
+					<Header />
+					<Nav />
 
-				<main className="main-container sec">{children}</main>
+					<main className="main-container sec">{children}</main>
 
-				<Footer />
+					<Footer />
+				</AuthProvider>
 			</body>
 		</html>
 	);

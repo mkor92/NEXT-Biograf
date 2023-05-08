@@ -39,7 +39,10 @@ export async function POST(request: Request) {
 			process.env.JWT_SECRET
 		);
 
-		const response = NextResponse.json({ msg: 'Logged in!' }, { status: 200 });
+		const response = NextResponse.json(
+			{ msg: 'Logged in!', data: { name: user.name, email: user.email } },
+			{ status: 200 }
+		);
 
 		// Set token in cookies
 		response.cookies.set({

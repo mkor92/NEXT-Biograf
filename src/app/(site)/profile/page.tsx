@@ -1,21 +1,25 @@
 'use client';
-import { useRouter } from 'next/navigation';
+import { useAuth } from '@/app/context/AuthContext';
 
-function page() {
-	const router = useRouter();
+function Profile() {
+	const { user, logout } = useAuth();
 
-	const logout = async () => {
-		const res = await fetch('http://localhost:3000/api/logout');
-		if (!res.ok) return alert('An error ocurred try again!');
-		return router.push('/');
+	const handleLogout = async () => {
+		await logout();
 	};
 
 	return (
 		<div>
 			<h1>Profile</h1>
-			<button onClick={logout}>Logout</button>
+			{user && (
+				<>
+					<p>{user.name}</p>
+					<p>{user.email}</p>
+				</>
+			)}
+			<button onClick={handleLogout}>Logout</button>
 		</div>
 	);
 }
 
-export default page;
+export default Profile;
