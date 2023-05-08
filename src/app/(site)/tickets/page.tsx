@@ -5,6 +5,7 @@ import Link from 'next/link';
 import TicketMovieInfo from '@/app/components/TicketMovieInfo';
 import TicketCount from '@/app/components/TicketCount';
 import ChooseSeats from '@/app/components/ChooseSeats';
+import PaymentSum from '@/app/components/PaymentSum';
 
 export enum Seat {
   available,
@@ -67,14 +68,8 @@ const TicketsPage: FC = () => {
         onSetSeatsArray={(newArray) => setSeatsArray(newArray)}
       />
 
-      <div className="divider"></div>
+      <PaymentSum ticketCount={ticketCount} />
 
-      <div className="total-sum-container">
-        <h2>Att betala:</h2>
-        <h2>{ticketCount * 150}kr</h2>
-      </div>
-
-      <div className="divider"></div>
       <Link href="/login" className="primary-btn">
         Logga in
       </Link>
