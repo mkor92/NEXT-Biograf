@@ -8,9 +8,9 @@ import ChooseSeats from '@/app/components/ChooseSeats';
 import PaymentSum from '@/app/components/PaymentSum';
 
 export enum Seat {
-  available,
-  booked,
-  choosed,
+  AVAILABLE,
+  BOOKED,
+  CHOOSED,
 }
 
 const TicketsPage: FC = () => {
@@ -23,7 +23,6 @@ const TicketsPage: FC = () => {
         }
       );
       const payload = await res.json();
-
       let numberOfSeats = 48;
       let initialSeatsArray = [];
       let bookedSeatsArray: number[] = payload.map(
@@ -34,11 +33,12 @@ const TicketsPage: FC = () => {
 
       for (let i = 1; i <= numberOfSeats; i++) {
         if (bookedSeatsArray.includes(i)) {
-          initialSeatsArray.push({ status: Seat.booked, seatNumber: i });
+          initialSeatsArray.push({ status: Seat.BOOKED, seatNumber: i });
         } else {
-          initialSeatsArray.push({ status: Seat.available, seatNumber: i });
+          initialSeatsArray.push({ status: Seat.AVAILABLE, seatNumber: i });
         }
       }
+
       setSeatsArray(initialSeatsArray);
     };
     fetchData();
@@ -49,6 +49,17 @@ const TicketsPage: FC = () => {
     [] | { status: Seat; seatNumber: number }[]
   >([]);
 
+  function availableSeats() {
+    let numberOfBookedSeats = 0;
+    for (let i = 0; i < seatsArray.length; i++) {
+      if (seatsArray[i].status == Seat.BOOKED) {
+        numberOfBookedSeats++;
+      }
+    }
+    let availableSeats = seatsArray.length - numberOfBookedSeats;
+    return availableSeats;
+  }
+
   return (
     <section className="sec-cont tickets-container">
       <h1>Biljettbokning</h1>
@@ -58,7 +69,12 @@ const TicketsPage: FC = () => {
         onClickMinus={() =>
           setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)
         }
-        onClickPlus={() => setTicketCount(ticketCount + 1)}
+        onClickPlus={() => {
+          let freeSeats = availableSeats();
+          setTicketCount(
+            ticketCount < freeSeats ? ticketCount + 1 : ticketCount
+          );
+        }}
       />
       <ChooseSeats
         seatsArray={seatsArray}
