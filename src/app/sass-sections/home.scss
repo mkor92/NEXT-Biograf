@@ -1,0 +1,12 @@
+.home-content {
+  h1 {
+    font-size: 1.4rem;
+    display: block;
+    text-align: start;
+    color: $second-color;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: $breaking-point) {
+}
