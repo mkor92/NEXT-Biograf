@@ -1,52 +1,48 @@
-"use client";
-import { useState } from "react";
-import FormInput from "@/app/components/FormInput";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+'use client';
+import { useState } from 'react';
+import FormInput from '@/app/components/FormInput';
+import Link from 'next/link';
 
-export default function signup() {
-  const searchParams = useSearchParams();
-  const tickets = searchParams.get("tickets");
-  console.log(tickets);
-
+export default function signup(props: any) {
+  console.log(props.tickets);
   const [guestData, setGuestData] = useState<{
     name: string;
     email: string;
     number: string;
     tickets: string;
   }>({
-    name: "",
-    email: "",
-    number: "",
-    tickets: `${tickets}`,
+    name: '',
+    email: '',
+    number: '',
+    tickets: `${props.tickets}`,
   });
   const inputs = [
     {
       id: 1,
-      name: "name",
-      type: "text",
+      name: 'name',
+      type: 'text',
       errorMsg:
-        "För- och efternamn borde vara mellan 4-30 tecken och får inte innehålla några specialtecken",
-      label: "För- och efternamn",
-      pattern: "^[A-ZÅÄÖa-zåäö]+ [A-ZÅÄÖa-zåäö]{2,30}$",
+        'För- och efternamn borde vara mellan 4-30 tecken och får inte innehålla några specialtecken',
+      label: 'För- och efternamn',
+      pattern: '^[A-ZÅÄÖa-zåäö]+ [A-ZÅÄÖa-zåäö]{2,30}$',
       required: true,
     },
     {
       id: 2,
-      name: "email",
-      type: "email",
-      errorMsg: "Ange en giltig e-postadress",
-      label: "E-postadress",
+      name: 'email',
+      type: 'email',
+      errorMsg: 'Ange en giltig e-postadress',
+      label: 'E-postadress',
       required: true,
     },
     {
       id: 3,
-      name: "number",
-      type: "tel",
-      errorMsg: "Ange ett giltigt telefonnummer",
-      label: "Telefonnummer",
-      minLength: "7",
-      maxLength: "20",
+      name: 'number',
+      type: 'tel',
+      errorMsg: 'Ange ett giltigt telefonnummer',
+      label: 'Telefonnummer',
+      minLength: '7',
+      maxLength: '20',
       required: true,
     },
   ];

@@ -6,6 +6,7 @@ import TicketMovieInfo from '@/app/components/TicketMovieInfo';
 import TicketCount from '@/app/components/TicketCount';
 import ChooseSeats from '@/app/components/ChooseSeats';
 import PaymentSum from '@/app/components/PaymentSum';
+import GuestTickets from '@/app/components/GuestTickets';
 
 export enum Seat {
   available,
@@ -42,39 +43,43 @@ const TicketsPage: FC = () => {
   const [ticketCount, setTicketCount] = useState(0);
   const [seatsArray, setSeatsArray] = useState<[] | { status: Seat; seatNumber: number }[]>([]);
 
-  return (
-    <section className="sec-cont tickets-container">
-      <h1>Biljettbokning</h1>
-      <TicketMovieInfo />
-      <TicketCount
-        ticketCount={ticketCount}
-        onClickMinus={() => setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)}
-        onClickPlus={() => setTicketCount(ticketCount + 1)}
-      />
-      <ChooseSeats
-        seatsArray={seatsArray}
-        ticketCount={ticketCount}
-        onSetSeatsArray={(newArray) => setSeatsArray(newArray)}
-      />
-      <PaymentSum ticketCount={ticketCount} />
-      <Link href="/login" className="primary-btn">
-        Logga in
-      </Link>
-      <Link
-        href={{
-          pathname: '/tickets/guest',
-          query: {
-            tickets: `${ticketCount}`,
-          },
-        }}
-        className="primary-btn">
-        Gäst
-      </Link>
-      <Link href="/" className="cancel-btn">
-        Avbryt
-      </Link>
-    </section>
-  );
+  const [continueGuest, setContinueGuest] = useState(false);
+
+  const handleGuest = () => {
+    setContinueGuest(true);
+  };
+
+  if (continueGuest) {
+    return <GuestTickets tickets={ticketCount} />;
+  } else {
+    return (
+      <section className="sec-cont tickets-container">
+        <h1>Biljettbokning</h1>
+        <TicketMovieInfo />
+        <TicketCount
+          ticketCount={ticketCount}
+          onClickMinus={() => setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)}
+          onClickPlus={() => setTicketCount(ticketCount + 1)}
+        />
+        <ChooseSeats
+          seatsArray={seatsArray}
+          ticketCount={ticketCount}
+          onSetSeatsArray={(newArray) => setSeatsArray(newArray)}
+        />
+        <PaymentSum ticketCount={ticketCount} />
+        <Link href="/login" className="primary-btn">
+          Logga in
+        </Link>
+        <button className="primary-btn guest-btn" onClick={handleGuest}>
+          Gäst
+        </button>
+
+        <Link href="/" className="cancel-btn">
+          Avbryt
+        </Link>
+      </section>
+    );
+  }
 };
 
 export default TicketsPage;
