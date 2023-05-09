@@ -4,7 +4,6 @@ import FormInput from '@/app/components/FormInput';
 import Link from 'next/link';
 
 export default function signup(props: any) {
-  console.log(props.tickets);
   const [guestData, setGuestData] = useState<{
     name: string;
     email: string;
