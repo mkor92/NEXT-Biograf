@@ -23,6 +23,10 @@
     font-size: 20px;
   }
 
+  .guest-btn {
+    font-size: large;
+  }
+
   .img-text-container {
     display: flex;
     margin: 1rem;
@@ -81,6 +85,7 @@
       margin-left: 30px;
       margin-right: 30px;
       margin-bottom: 1rem;
+      cursor: pointer;
 
       .seat-available {
         display: flex;
@@ -104,6 +109,18 @@
         color: black;
         font-size: 14px;
       }
+      .seat-choosed:before {
+        content: '\2713';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        background-color: darkgray;
+        border-radius: 3px;
+        color: black;
+        font-size: 14px;
+      }
     }
   }
 
@@ -111,14 +128,17 @@
     margin-bottom: 1rem;
     display: flex;
     gap: 0.5rem;
-    .choosed-seat {
-      height: 20px;
-      width: 20px;
+    .choosed-seat:before {
+      content: '\2713';
       display: flex;
       justify-content: center;
       align-items: center;
-      border: 1px solid $forth-color;
+      width: 20px;
+      height: 20px;
+      background-color: darkgray;
       border-radius: 3px;
+      color: black;
+      font-size: 14px;
     }
 
     .booked-seat {
