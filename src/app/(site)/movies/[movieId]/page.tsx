@@ -48,7 +48,7 @@ export default async function movieInfo({ params: { movieId } }: any) {
               return (
                 <li key={i}>
                   {screening.time.split('T')[0]}, {screening.time.split('T')[1].slice(0, 5)}
-                  <Link className="" href={`/tickets/${movie._id}`}>
+                  <Link className="" href={`/tickets`}>
                     Boka biljetter
                   </Link>
                 </li>
