@@ -3,9 +3,14 @@
 import { FC, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/app/context/AuthContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+	faPersonCircleExclamation,
+	faSpinner,
+} from '@fortawesome/free-solid-svg-icons';
 
 const LoginForm: FC = () => {
-	const { login } = useAuth();
+	const { login, isLoading, errorMessage, createError } = useAuth();
 
 	const [userData, setUserData] = useState<{
 		email: string;
@@ -18,7 +23,8 @@ const LoginForm: FC = () => {
 	// Form Submit
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		if (!userData.email || !userData.password) return;
+		if (!userData.email || !userData.password)
+			return createError('Vänligen fyll i alla fält');
 		await login(userData.email, userData.password);
 	};
 
@@ -35,6 +41,14 @@ const LoginForm: FC = () => {
 			<div>
 				<h1>Inloggning</h1>
 				<form action="" onSubmit={handleSubmit}>
+					{errorMessage && (
+						<>
+							<div className="error-color" style={{ paddingBottom: '1rem' }}>
+								<FontAwesomeIcon icon={faPersonCircleExclamation} />{' '}
+								{errorMessage}
+							</div>
+						</>
+					)}
 					<label htmlFor="email">Email</label>
 					<input
 						onChange={handleChange}
@@ -50,15 +64,22 @@ const LoginForm: FC = () => {
 						id="password"
 						name="password"
 					/>
-					<button className="primary-btn">Logga in</button>
+					<button className={isLoading ? 'primary-btn loading' : 'primary-btn'}>
+						{isLoading ? (
+							<FontAwesomeIcon icon={faSpinner} spin color="#FFFFF" />
+						) : (
+							'Logga in'
+						)}
+					</button>
 				</form>
+
 				<p>
-					Har du inget konto?
-					<span>
+					<small>
+						Har du inget konto?{' '}
 						<Link href="/signup" className="singup-link">
 							Registrera dig!
 						</Link>
-					</span>
+					</small>
 				</p>
 			</div>
 		</section>

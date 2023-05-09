@@ -6,7 +6,10 @@ export async function GET(request: Request) {
 	const jwt = <{ name: string; value: string } | undefined>cookies().get('jwt');
 
 	if (jwt === undefined) {
-		return NextResponse.json({ msg: 'Invalid token' }, { status: 404 });
+		return NextResponse.json(
+			{ msg: 'Autentiserings-id saknas' },
+			{ status: 404 }
+		);
 	}
 
 	try {
@@ -24,6 +27,9 @@ export async function GET(request: Request) {
 			{ status: 200 }
 		);
 	} catch (error) {
-		return NextResponse.json({ msg: 'Invalid token' }, { status: 404 });
+		return NextResponse.json(
+			{ msg: 'Autentiserings-id saknas' },
+			{ status: 404 }
+		);
 	}
 }

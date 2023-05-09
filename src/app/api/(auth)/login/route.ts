@@ -9,21 +9,21 @@ export async function POST(request: Request) {
 
 	// Validation
 	if (!body.email || !body.password)
-		return NextResponse.json({ msg: 'Missing arguments' }, { status: 400 });
+		return NextResponse.json({ msg: 'Saknar information' }, { status: 400 });
 
 	try {
 		const user = await User.findOne({ email: body.email });
 
 		if (!user)
 			return NextResponse.json(
-				{ msg: 'Wrong email or password' },
+				{ msg: 'Fel email eller lösenord' },
 				{ status: 401 }
 			);
 
 		const correctPassoword = await user.comparePassword(body.password);
 		if (!correctPassoword)
 			return NextResponse.json(
-				{ msg: 'Wrong email or password' },
+				{ msg: 'Fel email eller lösenord' },
 				{ status: 401 }
 			);
 
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
 		return response;
 	} catch {
 		return NextResponse.json(
-			{ msg: 'Serverside error, try again later!' },
+			{ msg: 'Ett fel uppstod, försök igen!' },
 			{ status: 500 }
 		);
 	}

@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useState, useContext, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
 interface User {
 	name: string;
@@ -10,7 +10,9 @@ interface User {
 
 interface AuthContextValue {
 	user: User | null;
-	isLoggedIn: boolean;
+	isLoading: boolean;
+	errorMessage: string | null;
+	createError: (error: string) => void;
 	login: (email: string, password: string) => Promise<void>;
 	logout: () => Promise<void>;
 	register: (name: string, email: string, password: string) => Promise<void>;
@@ -18,7 +20,9 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue>({
 	user: null,
-	isLoggedIn: false,
+	isLoading: false,
+	errorMessage: null,
+	createError: () => {},
 	login: async () => {},
 	logout: async () => {},
 	register: async () => {},
@@ -34,10 +38,19 @@ export const useAuth = () => {
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
+	const pathname = usePathname();
+
+	// Context Values
 	const [user, setUser] = useState<User | null>(null);
-	const isLoggedIn = !!user;
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [errorMessage, setError] = useState<string | null>(null);
+
+	const createError = (error: string) => {
+		setError(error);
+	};
 
 	const login = async (email: string, password: string) => {
+		setIsLoading(true);
 		try {
 			const res = await fetch('http://localhost:3000/api/login', {
 				method: 'POST',
@@ -48,24 +61,29 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 			});
 
 			const path = searchParams.get('p');
-			const data = await res.json();
+			const payload = await res.json();
+			setIsLoading(false);
 
 			if (res.ok) {
-				setUser(data.data);
+				setUser(payload.data);
 				return router.push(path || '/');
 			}
 
-			console.log(`HTTP-Error: ${res.status}`, data);
-			return alert(data.msg);
+			return setError(payload.msg);
 		} catch (error) {
+			setIsLoading(false);
 			console.log(error);
-			return alert('An error ocurred, try again!');
+			return setError('An error ocurred, try again!');
 		}
 	};
 
 	const logout = async () => {
+		setIsLoading(true);
 		const res = await fetch('http://localhost:3000/api/logout');
-		if (!res.ok) return alert('An error ocurred try again!');
+		setIsLoading(false);
+		if (!res.ok) {
+			return setError('An error ocurred try again!');
+		}
 		setUser(null);
 		return router.push('/');
 	};
@@ -74,7 +92,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		// ...
 	};
 
+	// First time you visit the website, we will check if you are authenticated.
+	// Exceptions: /login & /register since the middleware already checks if you can enter those pages.
 	useEffect(() => {
+		if (pathname === '/login' || pathname === '/register') return;
+
 		const getUser = async () => {
 			const res = await fetch('http://localhost:3000/api/user');
 			if (!res.ok) return setUser(null);
@@ -84,8 +106,28 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		getUser();
 	}, []);
 
+	// Removes the error after 6 seconds
+	useEffect(() => {
+		if (errorMessage === null) return;
+
+		let timer = setTimeout(() => setError(null), 6 * 1000);
+		return () => {
+			clearTimeout(timer);
+		};
+	}, [errorMessage]);
+
 	return (
-		<AuthContext.Provider value={{ user, isLoggedIn, login, logout, register }}>
+		<AuthContext.Provider
+			value={{
+				user,
+				isLoading,
+				errorMessage,
+				createError,
+				login,
+				logout,
+				register,
+			}}
+		>
 			{children}
 		</AuthContext.Provider>
 	);

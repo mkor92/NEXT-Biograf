@@ -1,8 +1,10 @@
 'use client';
 import { useAuth } from '@/app/context/AuthContext';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Profile() {
-	const { user, logout } = useAuth();
+	const { user, logout, isLoading } = useAuth();
 
 	const handleLogout = async () => {
 		await logout();
@@ -17,7 +19,17 @@ function Profile() {
 					<p>{user.email}</p>
 				</>
 			)}
-			<button onClick={handleLogout}>Logout</button>
+			<button
+				style={{ marginTop: '1rem' }}
+				className={isLoading ? 'primary-btn loading' : 'primary-btn'}
+				onClick={handleLogout}
+			>
+				{isLoading ? (
+					<FontAwesomeIcon icon={faSpinner} spin color="#FFFFF" />
+				) : (
+					'Logga ut'
+				)}
+			</button>
 		</div>
 	);
 }

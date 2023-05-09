@@ -91,6 +91,16 @@ a {
   font-size: 0.8rem;
 }
 
+.loading {
+  pointer-events: none;
+  opacity: .7;
+}
+
+.error-color {
+  display: block;
+  color: $default-red;
+}
+
 @import '../sass-sections/header.scss';
 @import '../sass-sections/footer.scss';
 @import '../sass-sections/nav-menu.scss';
