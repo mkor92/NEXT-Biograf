@@ -21,10 +21,6 @@ export default async function movieInfo({ params: { movieId } }: any) {
   const movie = await getMovie(movieId);
   const screenings = await getScreenings(movieId);
 
-  screenings.map((screening: any, i: number) => {
-    console.log(screening.time);
-  });
-
   if (!movie) return notFound();
   else {
     return (
@@ -47,8 +43,17 @@ export default async function movieInfo({ params: { movieId } }: any) {
             {screenings.map((screening: any, i: number) => {
               return (
                 <li key={i}>
-                  {screening.time.split('T')[0]}, {screening.time.split('T')[1].slice(0, 5)}
-                  <Link className="" href={`/tickets`}>
+                  {screening.time.split('T')[0]} {screening.time.split('T')[1].slice(0, 5)}
+                  <Link
+                    href={{
+                      pathname: '/tickets',
+                      query: {
+                        screening: screening._id,
+                        date: screening.time,
+                        movie: movie.movie.name,
+                        img: movie.movie.assets[0],
+                      },
+                    }}>
                     Boka biljetter
                   </Link>
                 </li>

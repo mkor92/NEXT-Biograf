@@ -2,10 +2,11 @@ import { db } from '@/utils/db';
 import Screening from '@/models/screening.model';
 import screeningModel from '@/models/screening.model';
 import { NextResponse } from 'next/server';
+import { useParams } from 'next/navigation';
 db();
 
-export async function GET(req: Request) {
-  const screenings = await Screening.find();
+export async function GET(request: any, { params }: any) {
+  const screenings = await Screening.find({ movie: params.movieId });
   return new Response(JSON.stringify(screenings));
 }
 

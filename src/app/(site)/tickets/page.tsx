@@ -7,6 +7,7 @@ import TicketCount from '@/app/components/TicketCount';
 import ChooseSeats from '@/app/components/ChooseSeats';
 import PaymentSum from '@/app/components/PaymentSum';
 import GuestTickets from '@/app/components/GuestTickets';
+import { useSearchParams } from 'next/navigation';
 
 export enum Seat {
   available,
@@ -15,11 +16,22 @@ export enum Seat {
 }
 
 const TicketsPage: FC = () => {
+  const [ticketCount, setTicketCount] = useState(0);
+  const [seatsArray, setSeatsArray] = useState<[] | { status: Seat; seatNumber: number }[]>([]);
+  const [continueGuest, setContinueGuest] = useState(false);
+
+  const searchParams = useSearchParams();
+  const screeningId = searchParams.get('screening');
+  const screeningDate = searchParams.get('date');
+  const movieTitle = searchParams.get('movie');
+  const movieImg = searchParams.get('img');
+
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch('http://localhost:3000/api/tickets/64536ba84157b856e74f0a37', {
+      const res = await fetch(`http://localhost:3000/api/tickets/${screeningId}`, {
         next: { revalidate: 1 },
       });
+
       const payload = await res.json();
 
       let numberOfSeats = 48;
@@ -37,25 +49,22 @@ const TicketsPage: FC = () => {
       }
       setSeatsArray(initialSeatsArray);
     };
+
     fetchData();
   }, []);
-
-  const [ticketCount, setTicketCount] = useState(0);
-  const [seatsArray, setSeatsArray] = useState<[] | { status: Seat; seatNumber: number }[]>([]);
-
-  const [continueGuest, setContinueGuest] = useState(false);
 
   const handleGuest = () => {
     setContinueGuest(true);
   };
 
   if (continueGuest) {
-    return <GuestTickets tickets={ticketCount} />;
+    return <GuestTickets />;
   } else {
     return (
       <section className="sec-cont tickets-container">
         <h1>Biljettbokning</h1>
-        <TicketMovieInfo />
+
+        <TicketMovieInfo title={movieTitle} img={movieImg} date={screeningDate} />
         <TicketCount
           ticketCount={ticketCount}
           onClickMinus={() => setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)}

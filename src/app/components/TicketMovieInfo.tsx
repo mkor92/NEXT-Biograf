@@ -1,22 +1,16 @@
-import { FC } from 'react';
-
 import Image from 'next/image';
 
-const TicketMovieInfo: FC = () => {
+export default function TicketMovieInfo(props: any) {
   return (
     <div className="img-text-container">
-      <Image
-        src="/images/encanto.jpg"
-        alt="movie image"
-        width={141.75}
-        height={210}
-      ></Image>
+      <Image src={props.img} alt="movie image" width={141.75} height={210}></Image>
       <div>
-        <h2>Encanto</h2>
-        <p>Stora salongen idag, Onsdag 17.00</p>
+        <h2 className="movie-title">{props.title}</h2>
+        <p>
+          {props.date.split('T')[0]}
+          <br /> {props.date.split('T')[1].slice(0, 5)}
+        </p>
       </div>
     </div>
   );
-};
-
-export default TicketMovieInfo;
+}
