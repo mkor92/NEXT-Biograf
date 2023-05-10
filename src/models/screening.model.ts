@@ -1,27 +1,28 @@
-import { Schema, model, models, Model, Document } from 'mongoose';
+import { Schema, model, models, Model, Document } from "mongoose";
 
 export interface IScreening extends Document {
-    salon: string,
-    time: Date | string,
-    movie: string,
-    seats: number
+    salon: string;
+    time: Date | string;
+    movie: string;
+    seats: number;
 }
 
 const screeningSchema = new Schema({
     salon: {
         type: String,
-        required: true
+        required: true,
     },
     time: {
         type: Date,
-        required: true
+        required: true,
     },
     movie: {
         type: Schema.Types.ObjectId,
         ref: "Movie",
-        required: true
+        required: true,
     },
-    seats: Number
+    seats: Number,
 });
 
-export default models.Screening as Model<IScreening> || model<IScreening>("Screening", screeningSchema);
+export default (models.Screening as Model<IScreening>) ||
+    model<IScreening>("Screening", screeningSchema);
