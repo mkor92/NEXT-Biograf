@@ -54,35 +54,43 @@ const TicketsPage: FC = () => {
     return availableSeats;
   }
 
-  return (
-    <section className="sec-cont tickets-container">
-      <h1>Biljettbokning</h1>
-      <TicketMovieInfo />
-      <TicketCount
-        ticketCount={ticketCount}
-        onClickMinus={() => setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)}
-        onClickPlus={() => {
-          let freeSeats = availableSeats();
-          setTicketCount(ticketCount < freeSeats ? ticketCount + 1 : ticketCount);
-        }}
-      />
-      <ChooseSeats
-        seatsArray={seatsArray}
-        ticketCount={ticketCount}
-        onSetSeatsArray={(newArray) => setSeatsArray(newArray)}
-      />
-      <PaymentSum ticketCount={ticketCount} />
-      <Link href="/login" className="primary-btn">
-        Logga in
-      </Link>
-      <Link href="/guest" className="primary-btn">
-        Gäst
-      </Link>
-      <Link href="/" className="cancel-btn">
-        Avbryt
-      </Link>
-    </section>
-  );
-};
+  const [continueGuest, setContinueGuest] = useState(false);
 
+  const handleGuest = () => {
+    setContinueGuest(true);
+  };
+  if (continueGuest) {
+    return <GuestTickets />;
+  } else {
+    return (
+      <section className="sec-cont tickets-container">
+        <h1>Biljettbokning</h1>
+        <TicketMovieInfo />
+        <TicketCount
+          ticketCount={ticketCount}
+          onClickMinus={() => setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)}
+          onClickPlus={() => {
+            let freeSeats = availableSeats();
+            setTicketCount(ticketCount < freeSeats ? ticketCount + 1 : ticketCount);
+          }}
+        />
+        <ChooseSeats
+          seatsArray={seatsArray}
+          ticketCount={ticketCount}
+          onSetSeatsArray={(newArray) => setSeatsArray(newArray)}
+        />
+        <PaymentSum ticketCount={ticketCount} />
+        <Link href="/login" className="primary-btn">
+          Logga in
+        </Link>
+        <button className="primary-btn guest-btn" onClick={handleGuest}>
+          Gäst
+        </button>
+        <Link href="/" className="cancel-btn">
+          Avbryt
+        </Link>
+      </section>
+    );
+  }
+};
 export default TicketsPage;
