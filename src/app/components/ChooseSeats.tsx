@@ -35,28 +35,28 @@ const ChooseSeats: FC<Props> = ({
                 key={seat.seatNumber}
                 onClick={() => {
                   let num = 0;
-                  for (let obj of seatsArray) {
-                    if (obj.status == Seat.choosed) {
+                  for (let seat of seatsArray) {
+                    if (seat.status == Seat.CHOOSED) {
                       num++;
                     }
                   }
                   const newArray = seatsArray.map((item) => {
                     if (item.seatNumber == seat.seatNumber) {
-                      if (item.status == Seat.available) {
+                      if (item.status == Seat.AVAILABLE) {
                         if (num < ticketCount) {
                           return {
-                            status: Seat.choosed,
+                            status: Seat.CHOOSED,
                             seatNumber: seat.seatNumber,
                           };
                         } else {
                           return {
-                            status: Seat.available,
+                            status: Seat.AVAILABLE,
                             seatNumber: seat.seatNumber,
                           };
                         }
-                      } else if (item.status == Seat.choosed) {
+                      } else if (item.status == Seat.CHOOSED) {
                         return {
-                          status: Seat.available,
+                          status: Seat.AVAILABLE,
                           seatNumber: seat.seatNumber,
                         };
                       } else {
@@ -69,9 +69,9 @@ const ChooseSeats: FC<Props> = ({
                   onSetSeatsArray(newArray);
                 }}
                 className={
-                  seat.status == Seat.booked
+                  seat.status == Seat.BOOKED
                     ? 'seat-not-available'
-                    : seat.status == Seat.choosed
+                    : seat.status == Seat.CHOOSED
                     ? 'seat-choosed'
                     : 'seat-available'
                 }

@@ -9,9 +9,9 @@ import PaymentSum from '@/app/components/PaymentSum';
 import GuestTickets from '@/app/components/GuestTickets';
 
 export enum Seat {
-  available,
-  booked,
-  choosed,
+  AVAILABLE,
+  BOOKED,
+  CHOOSED,
 }
 
 const TicketsPage: FC = () => {
@@ -21,7 +21,6 @@ const TicketsPage: FC = () => {
         next: { revalidate: 1 },
       });
       const payload = await res.json();
-
       let numberOfSeats = 48;
       let initialSeatsArray = [];
       let bookedSeatsArray: number[] = payload.map((ticket: { status: number; seat: number }) => {
@@ -30,11 +29,12 @@ const TicketsPage: FC = () => {
 
       for (let i = 1; i <= numberOfSeats; i++) {
         if (bookedSeatsArray.includes(i)) {
-          initialSeatsArray.push({ status: Seat.booked, seatNumber: i });
+          initialSeatsArray.push({ status: Seat.BOOKED, seatNumber: i });
         } else {
-          initialSeatsArray.push({ status: Seat.available, seatNumber: i });
+          initialSeatsArray.push({ status: Seat.AVAILABLE, seatNumber: i });
         }
       }
+
       setSeatsArray(initialSeatsArray);
     };
     fetchData();
@@ -80,6 +80,52 @@ const TicketsPage: FC = () => {
       </section>
     );
   }
+
+  function availableSeats() {
+    let numberOfBookedSeats = 0;
+    for (let i = 0; i < seatsArray.length; i++) {
+      if (seatsArray[i].status == Seat.BOOKED) {
+        numberOfBookedSeats++;
+      }
+    }
+    let availableSeats = seatsArray.length - numberOfBookedSeats;
+    return availableSeats;
+  }
+
+  return (
+    <section className="sec-cont tickets-container">
+      <h1>Biljettbokning</h1>
+      <TicketMovieInfo />
+      <TicketCount
+        ticketCount={ticketCount}
+        onClickMinus={() =>
+          setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)
+        }
+        onClickPlus={() => {
+          let freeSeats = availableSeats();
+          setTicketCount(
+            ticketCount < freeSeats ? ticketCount + 1 : ticketCount
+          );
+        }}
+      />
+      <ChooseSeats
+        seatsArray={seatsArray}
+        ticketCount={ticketCount}
+        onSetSeatsArray={(newArray) => setSeatsArray(newArray)}
+      />
+      <PaymentSum ticketCount={ticketCount} />
+      <Link href="/login" className="primary-btn">
+        Logga in
+      </Link>
+      <Link href="/guest" className="primary-btn">
+        Gäst
+      </Link>
+      <Link href="/" className="cancel-btn">
+        Avbryt
+      </Link>
+    </section>
+  );
+
 };
 
 export default TicketsPage;
