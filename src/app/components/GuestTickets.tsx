@@ -3,17 +3,13 @@ import { useState } from 'react';
 import FormInput from '@/app/components/FormInput';
 import Link from 'next/link';
 
-export default function signup(props: any) {
+export default function GuestTickets() {
   const [guestData, setGuestData] = useState<{
     name: string;
     email: string;
-    number: string;
-    tickets: string;
   }>({
     name: '',
     email: '',
-    number: '',
-    tickets: `${props.tickets}`,
   });
   const inputs = [
     {

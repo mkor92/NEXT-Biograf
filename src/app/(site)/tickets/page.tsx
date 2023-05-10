@@ -50,7 +50,7 @@ const TicketsPage: FC = () => {
   };
 
   if (continueGuest) {
-    return <GuestTickets tickets={ticketCount} />;
+    return <GuestTickets />;
   } else {
     return (
       <section className="sec-cont tickets-container">
