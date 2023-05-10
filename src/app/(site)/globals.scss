@@ -14,8 +14,7 @@ $bg-color: rgba($first-color, 0.8);
 }
 
 body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url('/bg.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/bg.jpg');
 
   background-size: cover;
   min-height: 100vh;
@@ -112,3 +111,4 @@ a {
 @import '../sass-sections/tickets.scss';
 @import '../sass-sections/movies.scss';
 @import '../sass-sections/registration.scss';
+@import '../sass-sections/booking-guest.scss';
