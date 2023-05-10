@@ -3,17 +3,13 @@ import { useState } from 'react';
 import FormInput from '@/app/components/FormInput';
 import Link from 'next/link';
 
-export default function GuestTickets(props: any) {
+export default function GuestTickets() {
   const [guestData, setGuestData] = useState<{
     name: string;
     email: string;
-    number: string;
-    tickets: string;
   }>({
     name: '',
     email: '',
-    number: '',
-    tickets: `${props.tickets}`,
   });
   const inputs = [
     {
@@ -34,6 +30,8 @@ export default function GuestTickets(props: any) {
       label: 'E-postadress',
       required: true,
     },
+    /*
+    No use for phonenumber right now, but saved it for future
     {
       id: 3,
       name: 'number',
@@ -43,7 +41,7 @@ export default function GuestTickets(props: any) {
       minLength: '7',
       maxLength: '20',
       required: true,
-    },
+    },*/
   ];
 
   const handleSubmit = (e: any) => {

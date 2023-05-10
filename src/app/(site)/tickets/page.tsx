@@ -10,9 +10,9 @@ import GuestTickets from '@/app/components/GuestTickets';
 import { useSearchParams } from 'next/navigation';
 
 export enum Seat {
-  available,
-  booked,
-  choosed,
+  AVAILABLE,
+  BOOKED,
+  CHOOSED,
 }
 
 const TicketsPage: FC = () => {
@@ -42,9 +42,9 @@ const TicketsPage: FC = () => {
 
       for (let i = 1; i <= numberOfSeats; i++) {
         if (bookedSeatsArray.includes(i)) {
-          initialSeatsArray.push({ status: Seat.booked, seatNumber: i });
+          initialSeatsArray.push({ status: Seat.BOOKED, seatNumber: i });
         } else {
-          initialSeatsArray.push({ status: Seat.available, seatNumber: i });
+          initialSeatsArray.push({ status: Seat.AVAILABLE, seatNumber: i });
         }
       }
       setSeatsArray(initialSeatsArray);
@@ -53,10 +53,20 @@ const TicketsPage: FC = () => {
     fetchData();
   }, []);
 
+  function availableSeats() {
+    let numberOfBookedSeats = 0;
+    for (let i = 0; i < seatsArray.length; i++) {
+      if (seatsArray[i].status == Seat.BOOKED) {
+        numberOfBookedSeats++;
+      }
+    }
+    let availableSeats = seatsArray.length - numberOfBookedSeats;
+    return availableSeats;
+  }
+
   const handleGuest = () => {
     setContinueGuest(true);
   };
-
   if (continueGuest) {
     return <GuestTickets />;
   } else {
@@ -68,7 +78,10 @@ const TicketsPage: FC = () => {
         <TicketCount
           ticketCount={ticketCount}
           onClickMinus={() => setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)}
-          onClickPlus={() => setTicketCount(ticketCount + 1)}
+          onClickPlus={() => {
+            let freeSeats = availableSeats();
+            setTicketCount(ticketCount < freeSeats ? ticketCount + 1 : ticketCount);
+          }}
         />
         <ChooseSeats
           seatsArray={seatsArray}
@@ -82,7 +95,6 @@ const TicketsPage: FC = () => {
         <button className="primary-btn guest-btn" onClick={handleGuest}>
           Gäst
         </button>
-
         <Link href="/" className="cancel-btn">
           Avbryt
         </Link>
@@ -90,5 +102,4 @@ const TicketsPage: FC = () => {
     );
   }
 };
-
 export default TicketsPage;
