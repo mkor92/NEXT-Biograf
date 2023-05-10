@@ -30,6 +30,8 @@ export default function GuestTickets() {
       label: 'E-postadress',
       required: true,
     },
+    /*
+    No use for phonenumber right now, but saved it for future
     {
       id: 3,
       name: 'number',
@@ -39,7 +41,7 @@ export default function GuestTickets() {
       minLength: '7',
       maxLength: '20',
       required: true,
-    },
+    },*/
   ];
 
   const handleSubmit = (e: any) => {
