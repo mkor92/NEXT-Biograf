@@ -21,6 +21,7 @@ const TicketsPage: FC = () => {
         next: { revalidate: 1 },
       });
       const payload = await res.json();
+
       let numberOfSeats = 48;
       let initialSeatsArray = [];
       let bookedSeatsArray: number[] = payload.map((ticket: { status: number; seat: number }) => {
@@ -34,7 +35,6 @@ const TicketsPage: FC = () => {
           initialSeatsArray.push({ status: Seat.AVAILABLE, seatNumber: i });
         }
       }
-
       setSeatsArray(initialSeatsArray);
     };
     fetchData();
