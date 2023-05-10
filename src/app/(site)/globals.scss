@@ -14,8 +14,7 @@ $bg-color: rgba($first-color, 0.8);
 }
 
 body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url('/bg.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/bg.jpg');
 
   background-size: cover;
   min-height: 100vh;
@@ -83,14 +82,6 @@ a {
   font-size: 0.8rem;
 }
 
-.cancel-btn {
-  display: block;
-  text-decoration: underline;
-  margin-top: 3rem;
-  color: $forth-color;
-  font-size: 0.8rem;
-}
-
 @import '../sass-sections/header.scss';
 @import '../sass-sections/footer.scss';
 @import '../sass-sections/nav-menu.scss';
@@ -102,3 +93,4 @@ a {
 @import '../sass-sections/tickets.scss';
 @import '../sass-sections/movies.scss';
 @import '../sass-sections/registration.scss';
+@import '../sass-sections/booking-guest.scss';
