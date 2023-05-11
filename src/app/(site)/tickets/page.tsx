@@ -1,5 +1,5 @@
 'use client';
-// export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic';
 import { FC, useState, useEffect } from 'react';
 import Link from 'next/link';
 import TicketMovieInfo from '@/app/components/TicketMovieInfo';
@@ -101,7 +101,7 @@ const TicketsPage: FC = () => {
         <Link href="/" className="cancel-btn">
           Avbryt
         </Link>
-        <CreateTicket />
+        <CreateTicket seatsArray={seatsArray} />
       </section>
     );
   }
