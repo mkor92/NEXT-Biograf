@@ -33,6 +33,22 @@
     }
 }
 
+@media screen and (max-width: 690px) {
+    .movies-cont {
+        .movie-list {
+            grid-template-columns: repeat(auto-fit, 170px);
+            .movie-item {
+                height: 250px;
+                a {
+                    h4 {
+                        font-size: .9rem;
+                    }
+                }
+            }
+        }
+    } 
+}
+
 @media screen and (max-width: 400px) {
     .movies-cont {
         .movie-list {

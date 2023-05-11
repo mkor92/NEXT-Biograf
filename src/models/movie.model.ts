@@ -1,17 +1,18 @@
-import { Schema, model, models, Model, Document } from 'mongoose';
+import { Schema, model, models, Model, Document } from "mongoose";
 
 export interface IMovie extends Document {
-    name: string,
-    assets: string[]
+    name: string;
+    assets: string[];
 }
 
 const movieSchema = new Schema({
     name: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
     },
-    assets: [String]
+    assets: [String],
 });
 
-export default models.Movie as Model<IMovie> || model<IMovie>("Movie", movieSchema);
+export default (models.Movie as Model<IMovie>) ||
+    model<IMovie>("Movie", movieSchema);
