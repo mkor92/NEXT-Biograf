@@ -11,25 +11,28 @@ function Profile() {
 	};
 
 	return (
-		<div>
+		<div className="sec-cont profile-page">
 			<h1>Profile</h1>
-			{user && (
-				<>
-					<p>{user.name}</p>
-					<p>{user.email}</p>
-				</>
-			)}
-			<button
-				style={{ marginTop: '1rem' }}
-				className={isLoading ? 'primary-btn loading' : 'primary-btn'}
-				onClick={handleLogout}
-			>
-				{isLoading ? (
-					<FontAwesomeIcon icon={faSpinner} spin color="#FFFFF" />
-				) : (
-					'Logga ut'
+			<div className="separation"></div>
+			<div className="profile-content">
+				{user && (
+					<>
+						<p>{user.name}</p>
+						<p>{user.email}</p>
+					</>
 				)}
-			</button>
+				<button
+					style={{ marginTop: '1rem' }}
+					className={isLoading ? 'primary-btn loading' : 'primary-btn'}
+					onClick={handleLogout}
+				>
+					{isLoading ? (
+						<FontAwesomeIcon icon={faSpinner} spin color="#FFFFF" />
+					) : (
+						'Logga ut'
+					)}
+				</button>
+			</div>
 		</div>
 	);
 }
