@@ -72,14 +72,28 @@ export default function Header() {
 					{user && (
 						<>
 							<li className="header-menu-item">
-								<Link href={'/profile'}>Profile</Link>
+								<Link
+									href={'/profile'}
+									onClick={() => {
+										setOpenMenu(!openMenu);
+									}}
+								>
+									Profile
+								</Link>
 							</li>
 						</>
 					)}
 					{!user && (
 						<>
 							<li className="header-menu-item">
-								<Link href={'/login'}>Logga in</Link>
+								<Link
+									href={'/login'}
+									onClick={() => {
+										setOpenMenu(!openMenu);
+									}}
+								>
+									Logga in
+								</Link>
 							</li>
 						</>
 					)}
