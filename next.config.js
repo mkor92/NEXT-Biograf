@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    appDir: true,
     serverComponentsExternalPackages: ['mongoose'],
   },
   webpack(config) {
@@ -9,7 +8,7 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ['cdn.discordapp.com'],
+    domains: ["cdn.discordapp.com"],
   },
 };
 
