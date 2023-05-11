@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 function Nav() {
 	const menu = [
 		{
@@ -24,26 +26,14 @@ function Nav() {
 
 	return (
 		<nav className="sec">
-			<button className="mobile-nav-menu">
-				Meny{' '}
-				<span className="arrow-top" id="menu-span">
-					&#9662;
-				</span>
-			</button>
-			<div className="nav sec-cont">
-				<ul id="nav-id">
+			<div className="sec-cont nav-content">
+				<menu>
 					{menu.map((li, index) => (
-						<li className="movies-nav" key={index}>
-							<ul className="movies-nav-list">
-								<li className="movies-nav-element">
-									<a href={li.link} className="show-all-movies">
-										{li.label}
-									</a>
-								</li>
-							</ul>
+						<li className="nav-item" key={index}>
+							<Link href={li.link}>{li.label}</Link>
 						</li>
 					))}
-				</ul>
+				</menu>
 			</div>
 		</nav>
 	);
