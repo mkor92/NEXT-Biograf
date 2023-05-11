@@ -1,5 +1,5 @@
 'use client';
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 import { FC, useState, useEffect } from 'react';
 import Link from 'next/link';
 import TicketMovieInfo from '@/app/components/TicketMovieInfo';
@@ -7,6 +7,7 @@ import TicketCount from '@/app/components/TicketCount';
 import ChooseSeats from '@/app/components/ChooseSeats';
 import PaymentSum from '@/app/components/PaymentSum';
 import GuestTickets from '@/app/components/GuestTickets';
+import CreateTicket from '@/app/components/CreateTicket';
 
 export enum Seat {
   AVAILABLE,
@@ -17,16 +18,21 @@ export enum Seat {
 const TicketsPage: FC = () => {
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch('http://localhost:3000/api/tickets/64536ba84157b856e74f0a37', {
-        next: { revalidate: 1 },
-      });
+      const res = await fetch(
+        'http://localhost:3000/api/tickets/64536ba84157b856e74f0a37',
+        {
+          next: { revalidate: 1 },
+        }
+      );
       const payload = await res.json();
 
       let numberOfSeats = 48;
       let initialSeatsArray = [];
-      let bookedSeatsArray: number[] = payload.map((ticket: { status: number; seat: number }) => {
-        return ticket.seat;
-      });
+      let bookedSeatsArray: number[] = payload.map(
+        (ticket: { status: number; seat: number }) => {
+          return ticket.seat;
+        }
+      );
 
       for (let i = 1; i <= numberOfSeats; i++) {
         if (bookedSeatsArray.includes(i)) {
@@ -41,7 +47,9 @@ const TicketsPage: FC = () => {
   }, []);
 
   const [ticketCount, setTicketCount] = useState(0);
-  const [seatsArray, setSeatsArray] = useState<[] | { status: Seat; seatNumber: number }[]>([]);
+  const [seatsArray, setSeatsArray] = useState<
+    [] | { status: Seat; seatNumber: number }[]
+  >([]);
 
   function availableSeats() {
     let numberOfBookedSeats = 0;
@@ -68,10 +76,14 @@ const TicketsPage: FC = () => {
         <TicketMovieInfo />
         <TicketCount
           ticketCount={ticketCount}
-          onClickMinus={() => setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)}
+          onClickMinus={() =>
+            setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)
+          }
           onClickPlus={() => {
             let freeSeats = availableSeats();
-            setTicketCount(ticketCount < freeSeats ? ticketCount + 1 : ticketCount);
+            setTicketCount(
+              ticketCount < freeSeats ? ticketCount + 1 : ticketCount
+            );
           }}
         />
         <ChooseSeats
@@ -89,6 +101,7 @@ const TicketsPage: FC = () => {
         <Link href="/" className="cancel-btn">
           Avbryt
         </Link>
+        <CreateTicket />
       </section>
     );
   }
