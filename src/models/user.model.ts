@@ -1,18 +1,18 @@
-import { Schema, model, models, Document, Model } from 'mongoose';
+import { Schema, model, models, Document, Model } from "mongoose";
 import bcrypt from "bcrypt";
 
 export interface IUser extends Document {
-    name: string,
-    email: string,
-    password: string,
-    comparePassword: () => Promise<boolean>
+    name: string;
+    email: string;
+    password: string;
+    comparePassword: (password: string) => Promise<boolean>;
 }
 
 const userSchema = new Schema({
     name: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
     },
     email: {
         type: String,
@@ -23,13 +23,13 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
     },
 });
 
-userSchema.pre<IUser>('save', async function (next) {
+userSchema.pre<IUser>("save", async function (next) {
     const user = this;
-    if (!user.isModified('password')) return next();
+    if (!user.isModified("password")) return next();
 
     // If new user is created encrypt the password on save
     const salt = await bcrypt.genSalt(10);
@@ -39,8 +39,11 @@ userSchema.pre<IUser>('save', async function (next) {
 });
 
 // Compare the encrypted passwords
-userSchema.methods.comparePassword = async function (password: string): Promise<boolean> {
+userSchema.methods.comparePassword = async function (
+    password: string
+): Promise<boolean> {
     return await bcrypt.compare(password, this.password);
-}
+};
 
-export default models.User as Model<IUser> || model<IUser>("User", userSchema);
+export default (models.User as Model<IUser>) ||
+    model<IUser>("User", userSchema);

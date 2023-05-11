@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useAuth } from '@/app/context/AuthContext';
 import { faBars, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, useEffect, useRef } from 'react';
@@ -23,11 +24,9 @@ export default function Header() {
 			label: 'Presentkort',
 			link: '/UC',
 		},
-		{
-			label: 'Logga in',
-			link: '/login',
-		},
 	];
+
+	const { user } = useAuth();
 	const [openMenu, setOpenMenu] = useState<boolean>(false);
 	const [height, setHeight] = useState(0);
 	const header = useRef<HTMLDivElement | null>(null);
@@ -70,6 +69,20 @@ export default function Header() {
 							</Link>
 						</li>
 					))}
+					{user && (
+						<>
+							<li className="header-menu-item">
+								<Link href={'/profile'}>Profile</Link>
+							</li>
+						</>
+					)}
+					{!user && (
+						<>
+							<li className="header-menu-item">
+								<Link href={'/login'}>Logga in</Link>
+							</li>
+						</>
+					)}
 				</menu>
 
 				{/* Mobile menu open/close buttons */}
