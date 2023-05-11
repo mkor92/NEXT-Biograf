@@ -1,3 +1,64 @@
+// Movies Page
+.movies-cont {
+    h1 {
+        color: white;
+        font-size: 1.4rem;
+    }
+
+    .movie-list {
+        margin: 2rem 0 4rem 0;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 200px);
+        justify-content: space-between;    
+        grid-column-gap: 1rem;
+        grid-row-gap: 4rem;
+
+        .movie-item {
+            width: inherit;
+            height: 300px;
+            a {
+                width: inherit;
+                height: 100%;
+
+                img {
+                    width: inherit;
+                    height: 100%;
+                }
+                h4 {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .movies-cont {
+        .movie-list {
+            grid-template-columns: repeat(auto-fit, 160px);
+        }
+    } 
+}
+
+@media screen and (max-width: 375px) {
+    .movies-cont {
+        .movie-list {
+            grid-template-columns: repeat(auto-fit, 140px);
+            .movie-item {
+                height: 230px;
+
+                a {
+                    h4 {
+                        font-size: .8rem;
+                    }
+                }
+            }
+        }
+    } 
+}
+
+// Movie Detail Page
 .movies-h2 {
   margin: 20px 0px 10px;
   color: $second-color;
