@@ -48,7 +48,7 @@ export default function Header() {
 						}
 					}}
 				>
-					<img src="logo.svg" alt="logo" />
+					<img src="/logo.svg" alt="logo" />
 					<p>Luleå Bio</p>
 				</Link>
 

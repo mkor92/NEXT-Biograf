@@ -1,3 +1,4 @@
+// Movies Page
 .movies-cont {
     h1 {
         color: white;
@@ -30,6 +31,19 @@
             }
         }
     }
+}
+
+.movie-details-loading {
+  width: 100%;
+  height: 90vh;
+  color: white;
+  display: grid;
+  place-items: center;
+
+  >svg {
+    width: 5rem;
+    height: 5rem;
+  }
 }
 
 @media screen and (max-width: 690px) {
@@ -71,4 +85,471 @@
             }
         }
     } 
+}
+
+// Movie Detail Page
+.movies-h2 {
+  margin: 20px 0px 10px;
+  color: $second-color;
+  width: 100%;
+  border-bottom: 1px solid $second-color;
+  padding-top: 1rem;
+}
+
+.movies-list-item {
+  max-width: 200px;
+  margin: auto;
+  text-align: center;
+  padding-top: 0.7rem;
+  list-style: none;
+}
+
+.movies-list-item-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+}
+
+.movie-title-text {
+  text-align: center;
+  color: $second-color;
+  height: 1rem;
+  margin-bottom: 1rem;
+}
+.movies {
+  margin: 0px auto;
+  padding: auto;
+
+  div {
+    display: flex;
+    margin-bottom: 1em;
+  }
+
+  .movies-category-list {
+    display: flex;
+    margin: 20px 0px 10px;
+
+    .movies-category-element {
+      width: fit-content;
+      text-decoration: none;
+      list-style-type: none;
+      border: 0.1rem solid black;
+      border-radius: 0.5rem;
+      text-align: center;
+      margin-right: 0.5rem;
+      padding: 0.45rem;
+      background-color: $second-color;
+      position: relative;
+      font-size: smaller;
+
+      a {
+        color: $first-color;
+      }
+    }
+  }
+  .movies-h2 {
+    margin: 20px 0px 10px;
+    color: $second-color;
+
+    width: 100%;
+
+    border-bottom: 1px solid $second-color;
+  }
+  .movies-list {
+    margin-top: 3rem;
+  }
+  .movies-list,
+  .movies-list1,
+  .movies-list2,
+  .movies-list3,
+  .movies-list4 {
+    display: grid;
+    grid-row-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    list-style: none;
+    padding-top: 50px;
+    margin-bottom: 50px;
+    li:nth-child(2) .date,
+    li:nth-child(3) .date,
+    li:nth-child(4) .date,
+    li:nth-child(5) .date,
+    li:nth-child(6) .date,
+    li:nth-child(7) .date {
+      display: none;
+    }
+
+    .movies-list-item {
+      max-width: 200px;
+      margin: auto;
+      text-align: center;
+
+      .date {
+        color: $second-color;
+        background-color: rgba($first-color, 0.4);
+        font-size: 1.5rem;
+        margin-top: -60px;
+        border-radius: 0.5rem;
+        padding: 0.2rem;
+        position: absolute;
+      }
+      a {
+        color: white;
+        background-color: rgba($first-color, 0.4);
+        border-radius: 0.2rem;
+        margin: 0px, auto;
+
+        p {
+          background-color: rgba($first-color, 0.4);
+          position: absolute;
+          z-index: 999;
+          font-size: 1.3rem;
+          border-bottom-right-radius: 5px;
+          margin: 0.2rem;
+        }
+      }
+
+      span {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        padding: 4px;
+      }
+
+      img {
+        display: block;
+        border: 1px solid $second-color;
+        max-width: 180px;
+        max-height: 250px;
+        margin-bottom: 20px auto 20px auto;
+
+        &:hover {
+          transform: scale(1.02);
+          border: 2px solid #cc0028;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.movie {
+  margin: 5em auto;
+
+  h1,
+  p {
+    color: $second-color;
+    font-size: 1.2em;
+    background-color: rgba($first-color, 0.8);
+    padding: 1.5rem;
+    border-radius: 0.4rem;
+  }
+  h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+  }
+
+  .movie-text {
+    display: flex;
+  }
+  img {
+    border: 1px solid $second-color;
+    border-radius: 0.4rem;
+    max-width: 40vw;
+    max-height: 600px;
+    height: fit-content;
+  }
+}
+
+.rating {
+  color: $second-color;
+  margin: 1rem;
+}
+.screenings {
+  display: block;
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+
+  > h2 {
+    padding-left: 1rem;
+    pointer-events: none;
+    color: $second-color;
+    margin-bottom: 2rem;
+    position: relative;
+
+    &::before {
+      content: '';
+      display: block;
+      background-color: $default-red;
+      width: 0.2rem;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    > span {
+      margin-left: 2rem;
+      background-color: $default-red;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+  }
+
+  > li {
+    list-style: none;
+    margin-bottom: 1rem;
+    background-color: rgb(207, 207, 207);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    > a {
+      cursor: pointer;
+      background-color: $default-red;
+      color: $second-color;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.6rem 1rem;
+    }
+  }
+
+  > .btns {
+    margin-top: 2rem;
+    button {
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: $default-red;
+      color: $second-color;
+      cursor: pointer;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.screeningsAnim {
+  animation: screeningLi 1s ease-in;
+}
+
+@keyframes screeningLi {
+  from {
+    pointer-events: none;
+    opacity: 0;
+  }
+  to {
+    pointer-events: all;
+    opacity: 1;
+  }
+}
+
+.review-container {
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+
+  h2 {
+    color: $second-color;
+    margin-bottom: 1rem;
+    display: inline-block;
+    position: relative;
+    padding-left: 1rem;
+
+    &::before {
+      content: '';
+      display: block;
+      background-color: $default-red;
+      width: 0.2rem;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .review-page {
+    margin-left: 2rem;
+    background-color: $default-red;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    display: inline-block;
+    color: white;
+  }
+
+  li {
+    list-style: none;
+    margin-bottom: 1rem;
+    background-color: rgb(207, 207, 207);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+  }
+  .review-author {
+    text-align: right;
+  }
+
+  .review-btn-container {
+    margin-top: 2rem;
+    button {
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: $default-red;
+      color: $second-color;
+      cursor: pointer;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .movies {
+    max-width: 100vw;
+    .movies-list,
+    .movies-list1,
+    .movies-list2,
+    .movies-list3,
+    .movies-list4 {
+      grid-template-columns: 1fr 1fr 1fr;
+
+      img {
+        max-width: 25vw;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $breaking-point) {
+  .rating {
+    text-align: center;
+  }
+  .movies {
+    h2 {
+      padding-left: 5%;
+    }
+    div {
+      display: block;
+    }
+    .movies-list,
+    .movies-list1,
+    .movies-list2,
+    .movies-list3,
+    .movies-list4 {
+      grid-template-columns: 1fr 1fr;
+
+      img {
+        max-width: 40vw;
+      }
+    }
+  }
+  .movie {
+    font-size: 0.8em;
+    p {
+      max-width: 450px;
+      text-align: center;
+    }
+    .movie-text {
+      flex-direction: column;
+      justify-items: center;
+    }
+    img {
+      max-width: 100%;
+      align-self: center;
+    }
+  }
+}
+
+.review-box {
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+
+  div {
+    list-style: none;
+    margin-bottom: 1rem;
+    background-color: rgb(207, 207, 207);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    display: block;
+
+    #addName {
+      display: block;
+      width: 10rem;
+      margin: 1rem auto 1rem 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: $first-color;
+      font-size: 1rem;
+    }
+
+    #rate {
+      display: block;
+      width: 10rem;
+      margin: 0.5rem auto 1rem 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: $first-color;
+      font-size: 1rem;
+    }
+
+    #addComment {
+      display: block;
+      height: fit-content;
+      min-height: 4rem;
+      width: 100%;
+      margin: 0.5rem auto 1rem 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: $first-color;
+      font-size: 1rem;
+    }
+
+    #addBtn {
+      display: block;
+      width: 7rem;
+      margin: 2rem auto 0.5rem 0.5rem;
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: $default-red;
+      color: $second-color;
+      cursor: pointer;
+    }
+  }
+
+  h2 {
+    padding-left: 1rem;
+    pointer-events: none;
+    color: $second-color;
+    margin-bottom: 2rem;
+    position: relative;
+
+    &::before {
+      content: '';
+      display: block;
+      background-color: $default-red;
+      width: 0.2rem;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
 }
