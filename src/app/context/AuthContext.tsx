@@ -35,6 +35,8 @@ export const useAuth = () => {
 	return context;
 };
 
+export const revalidate = 1;
+
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
