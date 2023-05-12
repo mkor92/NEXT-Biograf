@@ -72,6 +72,16 @@ const TicketsPage: FC = () => {
 		fetchData();
 	}, []);
 
+	function numberOfChoosedSeats() {
+		let numberOfChoosedSeats = 0;
+		for (let i = 0; i < seatsArray.length; i++) {
+			if (seatsArray[i].status == Seat.CHOOSED) {
+				numberOfChoosedSeats++;
+			}
+		}
+		return numberOfChoosedSeats;
+	}
+
 	function availableSeats() {
 		let numberOfBookedSeats = 0;
 		for (let i = 0; i < seatsArray.length; i++) {
@@ -101,9 +111,12 @@ const TicketsPage: FC = () => {
 						/>
 						<TicketCount
 							ticketCount={ticketCount}
-							onClickMinus={() =>
-								setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)
-							}
+							onClickMinus={() => {
+								let numClickedSeats = numberOfChoosedSeats();
+								if (numClickedSeats < ticketCount) {
+									setTicketCount(ticketCount - 1);
+								}
+							}}
 							onClickPlus={() => {
 								let freeSeats = availableSeats();
 								setTicketCount(
