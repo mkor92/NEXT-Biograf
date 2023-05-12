@@ -22,12 +22,21 @@ const TicketsPage: FC = () => {
 		[] | { status: Seat; seatNumber: number }[]
 	>([]);
 	const [continueGuest, setContinueGuest] = useState(false);
+	const [continuePayment, setContinuePyament] = useState(false);
+	const [viewBookingStepOne, setViewBookingStepOne] = useState(true);
 
 	const searchParams = useSearchParams();
 	const screeningId = searchParams.get('screening');
 	const screeningDate = searchParams.get('date');
 	const movieTitle = searchParams.get('movie');
 	const movieImg = searchParams.get('img');
+	const [guestData, setGuestData] = useState<{
+		name: string;
+		email: string;
+	}>({
+		name: '',
+		email: '',
+	});
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -74,49 +83,71 @@ const TicketsPage: FC = () => {
 
 	const handleGuest = () => {
 		setContinueGuest(true);
+		setViewBookingStepOne(false);
 	};
-	if (continueGuest) {
-		return <GuestTickets />;
-	} else {
-		return (
+	return (
+		<>
 			<section className="sec-cont tickets-container">
 				<h1>Biljettbokning</h1>
 
-				<TicketMovieInfo
-					title={movieTitle}
-					img={movieImg}
-					date={screeningDate}
-				/>
-				<TicketCount
-					ticketCount={ticketCount}
-					onClickMinus={() =>
-						setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)
-					}
-					onClickPlus={() => {
-						let freeSeats = availableSeats();
-						setTicketCount(
-							ticketCount < freeSeats ? ticketCount + 1 : ticketCount
-						);
-					}}
-				/>
-				<ChooseSeats
-					seatsArray={seatsArray}
-					ticketCount={ticketCount}
-					onSetSeatsArray={(newArray) => setSeatsArray(newArray)}
-				/>
-				<PaymentSum ticketCount={ticketCount} />
-				<Link href="/login" className="primary-btn">
-					Logga in
-				</Link>
-				<button className="primary-btn guest-btn" onClick={handleGuest}>
-					Gäst
-				</button>
-				<Link href="/" className="cancel-btn">
-					Avbryt
-				</Link>
-				<CreateTicket seatsArray={seatsArray} screeningId={screeningId} />
+				{viewBookingStepOne && (
+					<>
+						<TicketMovieInfo
+							title={movieTitle}
+							img={movieImg}
+							date={screeningDate}
+						/>
+						<TicketCount
+							ticketCount={ticketCount}
+							onClickMinus={() =>
+								setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)
+							}
+							onClickPlus={() => {
+								let freeSeats = availableSeats();
+								setTicketCount(
+									ticketCount < freeSeats ? ticketCount + 1 : ticketCount
+								);
+							}}
+						/>
+						<ChooseSeats
+							seatsArray={seatsArray}
+							ticketCount={ticketCount}
+							onSetSeatsArray={(newArray) => setSeatsArray(newArray)}
+						/>
+						<PaymentSum ticketCount={ticketCount} />
+						<Link href="/login" className="primary-btn">
+							Logga in
+						</Link>
+						<button className="primary-btn guest-btn" onClick={handleGuest}>
+							Gäst
+						</button>
+
+						<Link href="/" className="cancel-btn">
+							Avbryt
+						</Link>
+					</>
+				)}
+				{continueGuest && (
+					<GuestTickets
+						onChange={(e: any) =>
+							setGuestData({ ...guestData, [e.target.name]: e.target.value })
+						}
+						continuePayment={() => {
+							setContinueGuest(false);
+							setContinuePyament(true);
+						}}
+					/>
+				)}
+				{continuePayment && (
+					<CreateTicket
+						seatsArray={seatsArray}
+						screeningId={screeningId}
+						guestData={guestData}
+					/>
+				)}
 			</section>
-		);
-	}
+		</>
+	);
 };
+
 export default TicketsPage;

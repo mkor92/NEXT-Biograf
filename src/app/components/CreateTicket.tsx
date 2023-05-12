@@ -4,9 +4,13 @@ import { Seat } from '../(site)/tickets/page';
 type Props = {
 	seatsArray: [] | { status: Seat; seatNumber: number }[];
 	screeningId: string | null;
+	guestData: {
+		name: string;
+		email: string;
+	};
 };
 
-const CreateTicket: FC<Props> = ({ seatsArray, screeningId }) => {
+const CreateTicket: FC<Props> = ({ seatsArray, screeningId, guestData }) => {
 	return (
 		<div>
 			<button
@@ -22,7 +26,7 @@ const CreateTicket: FC<Props> = ({ seatsArray, screeningId }) => {
 							ticketsArray.push({
 								screening: screeningId,
 								seat: seatsArray[i].seatNumber,
-								email: 'per@morberg.com',
+								email: guestData.email,
 							});
 						}
 					}
