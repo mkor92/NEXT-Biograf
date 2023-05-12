@@ -114,7 +114,7 @@ const TicketsPage: FC = () => {
 				<Link href="/" className="cancel-btn">
 					Avbryt
 				</Link>
-				<CreateTicket seatsArray={seatsArray} />
+				<CreateTicket seatsArray={seatsArray} screeningId={screeningId} />
 			</section>
 		);
 	}
