@@ -9,6 +9,7 @@ import PaymentSum from '@/app/components/PaymentSum';
 import GuestTickets from '@/app/components/GuestTickets';
 import { useSearchParams } from 'next/navigation';
 import CreateTicket from '@/app/components/CreateTicket';
+import { useAuth } from '@/app/context/AuthContext';
 
 export enum Seat {
 	AVAILABLE,
@@ -37,6 +38,7 @@ const TicketsPage: FC = () => {
 		name: '',
 		email: '',
 	});
+	const { user } = useAuth();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -115,9 +117,22 @@ const TicketsPage: FC = () => {
 							onSetSeatsArray={(newArray) => setSeatsArray(newArray)}
 						/>
 						<PaymentSum ticketCount={ticketCount} />
-						<Link href="/login" className="primary-btn">
-							Logga in
-						</Link>
+
+						{user ? (
+							<button
+								onClick={() => {
+									setContinuePyament(true);
+									setViewBookingStepOne(false);
+								}}
+								className="primary-btn"
+							>
+								Fortsätt
+							</button>
+						) : (
+							<Link href="/login" className="primary-btn">
+								Logga in
+							</Link>
+						)}
 						<button className="primary-btn guest-btn" onClick={handleGuest}>
 							Gäst
 						</button>

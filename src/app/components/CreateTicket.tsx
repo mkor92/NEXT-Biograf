@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Seat } from '../(site)/tickets/page';
+import { useAuth } from '@/app/context/AuthContext';
 
 type Props = {
 	seatsArray: [] | { status: Seat; seatNumber: number }[];
@@ -11,6 +12,8 @@ type Props = {
 };
 
 const CreateTicket: FC<Props> = ({ seatsArray, screeningId, guestData }) => {
+	const { user } = useAuth();
+
 	return (
 		<div>
 			<button
@@ -26,7 +29,7 @@ const CreateTicket: FC<Props> = ({ seatsArray, screeningId, guestData }) => {
 							ticketsArray.push({
 								screening: screeningId,
 								seat: seatsArray[i].seatNumber,
-								email: guestData.email,
+								email: user ? user.email : guestData.email,
 							});
 						}
 					}

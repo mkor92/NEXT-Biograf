@@ -58,7 +58,6 @@ const GuestTickets: FC<Props> = ({ onChange, continuePayment }) => {
 					className="primary-btn"
 					onClick={() => {
 						continuePayment();
-						console.log('guestTicket component clicked');
 					}}
 				>
 					Fortsätt
