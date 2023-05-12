@@ -25,6 +25,7 @@ const TicketsPage: FC = () => {
 	const [continueGuest, setContinueGuest] = useState(false);
 	const [continuePayment, setContinuePyament] = useState(false);
 	const [viewBookingStepOne, setViewBookingStepOne] = useState(true);
+	const [youHaveToSelectTickets, setYouHaveToSelectTickets] = useState(false);
 
 	const searchParams = useSearchParams();
 	const screeningId = searchParams.get('screening');
@@ -82,6 +83,8 @@ const TicketsPage: FC = () => {
 		return numberOfChoosedSeats;
 	}
 
+	let numSeatsYouHaveChoosed = numberOfChoosedSeats();
+
 	function availableSeats() {
 		let numberOfBookedSeats = 0;
 		for (let i = 0; i < seatsArray.length; i++) {
@@ -94,8 +97,12 @@ const TicketsPage: FC = () => {
 	}
 
 	const handleGuest = () => {
-		setContinueGuest(true);
-		setViewBookingStepOne(false);
+		if (ticketCount > 0 && numSeatsYouHaveChoosed > 0) {
+			setContinueGuest(true);
+			setViewBookingStepOne(false);
+		} else {
+			setYouHaveToSelectTickets(true);
+		}
 	};
 	return (
 		<>
@@ -112,8 +119,7 @@ const TicketsPage: FC = () => {
 						<TicketCount
 							ticketCount={ticketCount}
 							onClickMinus={() => {
-								let numClickedSeats = numberOfChoosedSeats();
-								if (numClickedSeats < ticketCount) {
+								if (numSeatsYouHaveChoosed < ticketCount) {
 									setTicketCount(ticketCount - 1);
 								}
 							}}
@@ -129,13 +135,18 @@ const TicketsPage: FC = () => {
 							ticketCount={ticketCount}
 							onSetSeatsArray={(newArray) => setSeatsArray(newArray)}
 						/>
-						<PaymentSum ticketCount={ticketCount} />
 
+						<PaymentSum ticketCount={ticketCount} />
+						{youHaveToSelectTickets && <p>You have to select tickets!</p>}
 						{user ? (
 							<button
 								onClick={() => {
-									setContinuePyament(true);
-									setViewBookingStepOne(false);
+									if (ticketCount > 0 && numSeatsYouHaveChoosed > 0) {
+										setContinuePyament(true);
+										setViewBookingStepOne(false);
+									} else {
+										setYouHaveToSelectTickets(true);
+									}
 								}}
 								className="primary-btn"
 							>
@@ -171,6 +182,7 @@ const TicketsPage: FC = () => {
 						seatsArray={seatsArray}
 						screeningId={screeningId}
 						guestData={guestData}
+						onClickToCreateTicket={() => setContinuePyament(false)}
 					/>
 				)}
 			</section>

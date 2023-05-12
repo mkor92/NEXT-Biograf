@@ -9,9 +9,15 @@ type Props = {
 		name: string;
 		email: string;
 	};
+	onClickToCreateTicket: () => void;
 };
 
-const CreateTicket: FC<Props> = ({ seatsArray, screeningId, guestData }) => {
+const CreateTicket: FC<Props> = ({
+	seatsArray,
+	screeningId,
+	guestData,
+	onClickToCreateTicket,
+}) => {
 	const { user } = useAuth();
 
 	return (
@@ -39,6 +45,7 @@ const CreateTicket: FC<Props> = ({ seatsArray, screeningId, guestData }) => {
 						headers: { 'content-Type': 'application/json' },
 						body: JSON.stringify(ticketsArray),
 					});
+					onClickToCreateTicket();
 				}}
 				className="primary-btn"
 			>
