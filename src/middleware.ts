@@ -15,13 +15,13 @@ export async function middleware(req: NextRequest) {
 	// If token doesn't exist then redirect to login
 	if (jwt === undefined) {
 		// Exceptions:
-		if (requestedPage === '/login' || requestedPage === 'register') {
+		if (requestedPage === '/login' || requestedPage === '/signup') {
 			return NextResponse.next();
 		}
 		return NextResponse.redirect(url);
 	}
 
-	if (requestedPage === '/login' || requestedPage === 'register') {
+	if (requestedPage === '/login' || requestedPage === '/signup') {
 		return NextResponse.redirect(new URL('/profile', req.nextUrl));
 	}
 
@@ -39,5 +39,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-	matcher: ['/profile', '/login', '/register'],
+	matcher: ['/profile', '/login', '/signup'],
 };
