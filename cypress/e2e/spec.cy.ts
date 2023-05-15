@@ -11,6 +11,7 @@ describe('template spec', () => {
 		cy.get('[data-testid="book-screening-btn"]:first').click();
 
 		// choose number of tickets, seat and click guest button
+		cy.wait(2000);
 		cy.get('[data-testid="ticket-count-plus"]').click();
 		cy.get('.seat-available:first').click();
 		cy.get('[data-testid="guest-btn"]').click();

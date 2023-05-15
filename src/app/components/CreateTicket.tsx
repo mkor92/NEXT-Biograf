@@ -22,6 +22,19 @@ const CreateTicket: FC<Props> = ({
 
 	return (
 		<div>
+			{
+				// temporary code for test
+			}
+			<ul>
+				<li data-testid="payment-method">swish</li>
+				<li>kort</li>
+				<li>faktura</li>
+				<li>check</li>
+			</ul>
+
+			{
+				// end temporary code
+			}
 			<button
 				onClick={() => {
 					let ticketsArray: {

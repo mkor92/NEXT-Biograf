@@ -1,0 +1,4 @@
+{
+    "defalutTimeout": 5000,
+    "pageLoadTimeout": 10000
+  }

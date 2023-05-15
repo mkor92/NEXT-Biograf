@@ -26,6 +26,7 @@ const TicketsPage: FC = () => {
 	const [continuePayment, setContinuePyament] = useState(false);
 	const [viewBookingStepOne, setViewBookingStepOne] = useState(true);
 	const [youHaveToSelectTickets, setYouHaveToSelectTickets] = useState(false);
+	const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
 	const searchParams = useSearchParams();
 	const screeningId = searchParams.get('screening');
@@ -157,7 +158,11 @@ const TicketsPage: FC = () => {
 								Logga in
 							</Link>
 						)}
-						<button className="primary-btn guest-btn" onClick={handleGuest}>
+						<button
+							data-testid="guest-btn"
+							className="primary-btn guest-btn"
+							onClick={handleGuest}
+						>
 							Gäst
 						</button>
 
@@ -182,9 +187,13 @@ const TicketsPage: FC = () => {
 						seatsArray={seatsArray}
 						screeningId={screeningId}
 						guestData={guestData}
-						onClickToCreateTicket={() => setContinuePyament(false)}
+						onClickToCreateTicket={() => {
+							setBookingConfirmed(true);
+							setContinuePyament(false);
+						}}
 					/>
 				)}
+				{bookingConfirmed && <p>Bokning bekräftad!</p>}
 			</section>
 		</>
 	);
