@@ -1,176 +1,176 @@
 .tickets-container {
-  background-color: $bg-color;
-  color: $second-color;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 2rem;
-  padding-top: 2rem;
+	background-color: $bg-color;
+	color: $second-color;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-bottom: 2rem;
+	padding-top: 2rem;
 
-  h1 {
-    margin-bottom: 1rem;
-  }
+	h1 {
+		margin-bottom: 1rem;
+	}
 
-  h2 {
-    margin-bottom: 1rem;
-  }
+	h2 {
+		margin-bottom: 1rem;
+	}
 
-  .header-two {
-    margin-top: 1.5rem;
-  }
+	.header-two {
+		margin-top: 1.5rem;
+	}
 
-  .ticket-count {
-    font-size: 20px;
-  }
+	.ticket-count {
+		font-size: 20px;
+	}
 
-  .guest-btn {
-    font-size: large;
-  }
+	.guest-btn {
+		font-size: large;
+	}
 
-  .img-text-container {
-    display: flex;
-    margin: 1rem;
-    gap: 1rem;
-  }
+	.img-text-container {
+		display: flex;
+		margin: 1rem;
+		gap: 1rem;
+	}
 
-  .number-of-tickets-container {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    .plus-minus {
-      cursor: pointer;
-      background-color: $forth-color;
-      border-radius: 100%;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: black;
-      font-size: 20px;
-    }
-  }
+	.number-of-tickets-container {
+		display: flex;
+		gap: 1rem;
+		margin-bottom: 1rem;
+		.plus-minus {
+			cursor: pointer;
+			background-color: $forth-color;
+			border-radius: 100%;
+			width: 30px;
+			height: 30px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: black;
+			font-size: 20px;
+		}
+	}
 
-  .movie-screen-seat-container {
-    width: 295px;
+	.movie-screen-seat-container {
+		width: 295px;
 
-    .movie-screen-container {
-      display: flex;
-      margin-bottom: 2rem;
+		.movie-screen-container {
+			display: flex;
+			margin-bottom: 2rem;
 
-      .movie-screen-left {
-        border-top: 30px solid $default-red;
-        border-left: 30px solid transparent;
-        width: 0;
-        height: 0;
-      }
-      .movie-screen-middle {
-        background-color: $forth-color;
-        width: 235px;
-        height: 30px;
-      }
-      .movie-screen-right {
-        border-top: 30px solid $default-red;
-        border-right: 30px solid transparent;
-        width: 0;
-        height: 0;
-      }
-    }
+			.movie-screen-left {
+				border-top: 30px solid $default-red;
+				border-left: 30px solid transparent;
+				width: 0;
+				height: 0;
+			}
+			.movie-screen-middle {
+				background-color: $forth-color;
+				width: 235px;
+				height: 30px;
+			}
+			.movie-screen-right {
+				border-top: 30px solid $default-red;
+				border-right: 30px solid transparent;
+				width: 0;
+				height: 0;
+			}
+		}
 
-    .seat-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      column-gap: 10px;
-      row-gap: 10px;
-      margin-left: 30px;
-      margin-right: 30px;
-      margin-bottom: 1rem;
-      cursor: pointer;
+		.seat-container {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+			column-gap: 10px;
+			row-gap: 10px;
+			margin-left: 30px;
+			margin-right: 30px;
+			margin-bottom: 1rem;
+			cursor: pointer;
 
-      .seat-available {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 20px;
-        height: 20px;
-        background-color: $forth-color;
-        border-radius: 3px;
-        color: black;
-        font-size: 14px;
-      }
-      .seat-not-available {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 20px;
-        height: 20px;
-        background-color: $default-red;
-        border-radius: 3px;
-        color: black;
-        font-size: 14px;
-      }
-      .seat-choosed:before {
-        content: '\2713';
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 20px;
-        height: 20px;
-        background-color: darkgray;
-        border-radius: 3px;
-        color: black;
-        font-size: 14px;
-      }
-    }
-  }
+			.seat-available {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 20px;
+				height: 20px;
+				background-color: $forth-color;
+				border-radius: 3px;
+				color: black;
+				font-size: 14px;
+			}
+			.seat-not-available {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 20px;
+				height: 20px;
+				background-color: $default-red;
+				border-radius: 3px;
+				color: black;
+				font-size: 14px;
+			}
+			.seat-choosed:before {
+				content: '\2713';
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 20px;
+				height: 20px;
+				background-color: darkgray;
+				border-radius: 3px;
+				color: black;
+				font-size: 14px;
+			}
+		}
+	}
 
-  .choose-seat-container {
-    margin-bottom: 1rem;
-    display: flex;
-    gap: 0.5rem;
-    .choosed-seat:before {
-      content: '\2713';
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 20px;
-      height: 20px;
-      background-color: darkgray;
-      border-radius: 3px;
-      color: black;
-      font-size: 14px;
-    }
+	.choose-seat-container {
+		margin-bottom: 1rem;
+		display: flex;
+		gap: 0.5rem;
+		.choosed-seat:before {
+			content: '\2713';
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 20px;
+			height: 20px;
+			background-color: darkgray;
+			border-radius: 3px;
+			color: black;
+			font-size: 14px;
+		}
 
-    .booked-seat {
-      background-color: $default-red;
-      width: 20px;
-      height: 20px;
-      border-radius: 3px;
-    }
-  }
+		.booked-seat {
+			background-color: $default-red;
+			width: 20px;
+			height: 20px;
+			border-radius: 3px;
+		}
+	}
 
-  .divider {
-    background-color: $second-color;
-    height: 1px;
-    width: 80%;
-    margin: auto;
-    margin-bottom: 0.5rem;
-  }
+	.divider {
+		background-color: $second-color;
+		height: 1px;
+		width: 80%;
+		margin: auto;
+		margin-bottom: 0.5rem;
+	}
 
-  .total-sum-container {
-    display: flex;
-    gap: 2rem;
-  }
+	.total-sum-container {
+		display: flex;
+		gap: 2rem;
+	}
 
-  .primary-btn {
-    display: block;
-    width: 11.5rem;
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
-    text-align: center;
-  }
+	.primary-btn {
+		display: block;
+		width: 11.5rem;
+		margin-bottom: 0.5rem;
+		margin-top: 0.5rem;
+		text-align: center;
+	}
 
-  .cancel-btn {
-    margin-top: 2rem;
-  }
+	.cancel-btn {
+		margin-top: 2rem;
+	}
 }

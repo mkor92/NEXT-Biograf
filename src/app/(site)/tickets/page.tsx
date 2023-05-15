@@ -8,6 +8,8 @@ import ChooseSeats from '@/app/components/ChooseSeats';
 import PaymentSum from '@/app/components/PaymentSum';
 import GuestTickets from '@/app/components/GuestTickets';
 import { useSearchParams } from 'next/navigation';
+import CreateTicket from '@/app/components/CreateTicket';
+import { useAuth } from '@/app/context/AuthContext';
 
 export enum Seat {
 	AVAILABLE,
@@ -21,12 +23,23 @@ const TicketsPage: FC = () => {
 		[] | { status: Seat; seatNumber: number }[]
 	>([]);
 	const [continueGuest, setContinueGuest] = useState(false);
+	const [continuePayment, setContinuePyament] = useState(false);
+	const [viewBookingStepOne, setViewBookingStepOne] = useState(true);
+	const [youHaveToSelectTickets, setYouHaveToSelectTickets] = useState(false);
 
 	const searchParams = useSearchParams();
 	const screeningId = searchParams.get('screening');
 	const screeningDate = searchParams.get('date');
 	const movieTitle = searchParams.get('movie');
 	const movieImg = searchParams.get('img');
+	const [guestData, setGuestData] = useState<{
+		name: string;
+		email: string;
+	}>({
+		name: '',
+		email: '',
+	});
+	const { user } = useAuth();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -60,6 +73,18 @@ const TicketsPage: FC = () => {
 		fetchData();
 	}, []);
 
+	function numberOfChoosedSeats() {
+		let numberOfChoosedSeats = 0;
+		for (let i = 0; i < seatsArray.length; i++) {
+			if (seatsArray[i].status == Seat.CHOOSED) {
+				numberOfChoosedSeats++;
+			}
+		}
+		return numberOfChoosedSeats;
+	}
+
+	let numSeatsYouHaveChoosed = numberOfChoosedSeats();
+
 	function availableSeats() {
 		let numberOfBookedSeats = 0;
 		for (let i = 0; i < seatsArray.length; i++) {
@@ -72,53 +97,97 @@ const TicketsPage: FC = () => {
 	}
 
 	const handleGuest = () => {
-		setContinueGuest(true);
+		if (ticketCount > 0 && numSeatsYouHaveChoosed > 0) {
+			setContinueGuest(true);
+			setViewBookingStepOne(false);
+		} else {
+			setYouHaveToSelectTickets(true);
+		}
 	};
-	if (continueGuest) {
-		return <GuestTickets />;
-	} else {
-		return (
+	return (
+		<>
 			<section className="sec-cont tickets-container">
 				<h1>Biljettbokning</h1>
 
-				<TicketMovieInfo
-					title={movieTitle}
-					img={movieImg}
-					date={screeningDate}
-				/>
-				<TicketCount
-					ticketCount={ticketCount}
-					onClickMinus={() =>
-						setTicketCount(ticketCount != 0 ? ticketCount - 1 : ticketCount)
-					}
-					onClickPlus={() => {
-						let freeSeats = availableSeats();
-						setTicketCount(
-							ticketCount < freeSeats ? ticketCount + 1 : ticketCount
-						);
-					}}
-				/>
-				<ChooseSeats
-					seatsArray={seatsArray}
-					ticketCount={ticketCount}
-					onSetSeatsArray={(newArray) => setSeatsArray(newArray)}
-				/>
-				<PaymentSum ticketCount={ticketCount} />
-				<Link href="/login" className="primary-btn">
-					Logga in
-				</Link>
-				<button
-					data-testid="guest-btn"
-					className="primary-btn guest-btn"
-					onClick={handleGuest}
-				>
-					Gäst
-				</button>
-				<Link href="/" className="cancel-btn">
-					Avbryt
-				</Link>
+				{viewBookingStepOne && (
+					<>
+						<TicketMovieInfo
+							title={movieTitle}
+							img={movieImg}
+							date={screeningDate}
+						/>
+						<TicketCount
+							ticketCount={ticketCount}
+							onClickMinus={() => {
+								if (numSeatsYouHaveChoosed < ticketCount) {
+									setTicketCount(ticketCount - 1);
+								}
+							}}
+							onClickPlus={() => {
+								let freeSeats = availableSeats();
+								setTicketCount(
+									ticketCount < freeSeats ? ticketCount + 1 : ticketCount
+								);
+							}}
+						/>
+						<ChooseSeats
+							seatsArray={seatsArray}
+							ticketCount={ticketCount}
+							onSetSeatsArray={(newArray) => setSeatsArray(newArray)}
+						/>
+
+						<PaymentSum ticketCount={ticketCount} />
+						{youHaveToSelectTickets && <p>You have to select tickets!</p>}
+						{user ? (
+							<button
+								onClick={() => {
+									if (ticketCount > 0 && numSeatsYouHaveChoosed > 0) {
+										setContinuePyament(true);
+										setViewBookingStepOne(false);
+									} else {
+										setYouHaveToSelectTickets(true);
+									}
+								}}
+								className="primary-btn"
+							>
+								Fortsätt
+							</button>
+						) : (
+							<Link href="/login" className="primary-btn">
+								Logga in
+							</Link>
+						)}
+						<button className="primary-btn guest-btn" onClick={handleGuest}>
+							Gäst
+						</button>
+
+						<Link href="/" className="cancel-btn">
+							Avbryt
+						</Link>
+					</>
+				)}
+				{continueGuest && (
+					<GuestTickets
+						onChange={(e: any) =>
+							setGuestData({ ...guestData, [e.target.name]: e.target.value })
+						}
+						continuePayment={() => {
+							setContinueGuest(false);
+							setContinuePyament(true);
+						}}
+					/>
+				)}
+				{continuePayment && (
+					<CreateTicket
+						seatsArray={seatsArray}
+						screeningId={screeningId}
+						guestData={guestData}
+						onClickToCreateTicket={() => setContinuePyament(false)}
+					/>
+				)}
 			</section>
-		);
-	}
+		</>
+	);
 };
+
 export default TicketsPage;
