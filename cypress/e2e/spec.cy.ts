@@ -31,9 +31,10 @@ describe('Book ticket', () => {
 		// visit the site
 		cy.visit('/');
 
-		// log in
+		// click "Logga in" (login)
 		cy.get('li').contains('Logga in').click();
 
+		// fill in login form
 		cy.get('input:first').type('user@one.com');
 		cy.get('input:last').type('abc123');
 		cy.get('button').click();
