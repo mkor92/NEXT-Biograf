@@ -17,8 +17,8 @@ describe('Book ticket', () => {
 		cy.get('[data-testid="guest-btn"]').click();
 
 		// fill form and click continue
-		cy.get('input:first').type('John Doe');
-		cy.get('input:last').type('john@doe.com');
+		cy.get('input:first').type('Cypress Test');
+		cy.get('input:last').type('cypress.guest@test.com');
 		cy.get('button').click();
 
 		// choose payment method and click pay
