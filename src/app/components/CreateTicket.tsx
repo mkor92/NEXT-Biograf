@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Seat } from '../(site)/tickets/page';
 import { useAuth } from '@/app/context/AuthContext';
+export const dynamic = 'force-dynamic';
 
 type Props = {
 	seatsArray: [] | { status: Seat; seatNumber: number }[];
@@ -62,7 +63,7 @@ const CreateTicket: FC<Props> = ({
 				}}
 				className="primary-btn"
 			>
-				Create Ticket
+				Betala
 			</button>
 		</div>
 	);
