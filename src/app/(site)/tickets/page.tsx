@@ -10,12 +10,7 @@ import GuestTickets from '@/app/components/GuestTickets';
 import { useSearchParams } from 'next/navigation';
 import CreateTicket from '@/app/components/CreateTicket';
 import { useAuth } from '@/app/context/AuthContext';
-
-export enum Seat {
-	AVAILABLE,
-	BOOKED,
-	CHOOSED,
-}
+import { Seat } from '@/utils/enums';
 
 const TicketsPage: FC = () => {
 	const [ticketCount, setTicketCount] = useState(0);

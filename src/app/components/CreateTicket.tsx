@@ -1,7 +1,6 @@
 import { FC } from 'react';
-import { Seat } from '../(site)/tickets/page';
+import { Seat } from '@/utils/enums';
 import { useAuth } from '@/app/context/AuthContext';
-export const dynamic = 'force-dynamic';
 
 type Props = {
 	seatsArray: [] | { status: Seat; seatNumber: number }[];
