@@ -77,6 +77,7 @@ export default function MovieInfo({ params: { movieId } }: Props) {
 										{screening.time.split('T')[0]}{' '}
 										{screening.time.split('T')[1].slice(0, 5)}
 										<Link
+											data-testid="book-screening-btn"
 											href={{
 												pathname: '/tickets',
 												query: {

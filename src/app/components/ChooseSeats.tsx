@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Seat } from '../(site)/tickets/page';
+import { Seat } from '@/utils/enums';
 
 type Props = {
 	seatsArray: [] | { status: Seat; seatNumber: number }[];
