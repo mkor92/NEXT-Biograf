@@ -1,5 +1,5 @@
 'use client';
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 import { FC, useState, useEffect } from 'react';
 import Link from 'next/link';
 import TicketMovieInfo from '@/app/components/TicketMovieInfo';
@@ -10,12 +10,7 @@ import GuestTickets from '@/app/components/GuestTickets';
 import { useSearchParams } from 'next/navigation';
 import CreateTicket from '@/app/components/CreateTicket';
 import { useAuth } from '@/app/context/AuthContext';
-
-export enum Seat {
-	AVAILABLE,
-	BOOKED,
-	CHOOSED,
-}
+import { Seat } from '@/utils/enums';
 
 const TicketsPage: FC = () => {
 	const [ticketCount, setTicketCount] = useState(0);
@@ -26,6 +21,7 @@ const TicketsPage: FC = () => {
 	const [continuePayment, setContinuePyament] = useState(false);
 	const [viewBookingStepOne, setViewBookingStepOne] = useState(true);
 	const [youHaveToSelectTickets, setYouHaveToSelectTickets] = useState(false);
+	const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
 	const searchParams = useSearchParams();
 	const screeningId = searchParams.get('screening');
@@ -157,7 +153,11 @@ const TicketsPage: FC = () => {
 								Logga in
 							</Link>
 						)}
-						<button className="primary-btn guest-btn" onClick={handleGuest}>
+						<button
+							data-testid="guest-btn"
+							className="primary-btn guest-btn"
+							onClick={handleGuest}
+						>
 							Gäst
 						</button>
 
@@ -182,9 +182,13 @@ const TicketsPage: FC = () => {
 						seatsArray={seatsArray}
 						screeningId={screeningId}
 						guestData={guestData}
-						onClickToCreateTicket={() => setContinuePyament(false)}
+						onClickToCreateTicket={() => {
+							setBookingConfirmed(true);
+							setContinuePyament(false);
+						}}
 					/>
 				)}
+				{bookingConfirmed && <p>Bokning bekräftad!</p>}
 			</section>
 		</>
 	);

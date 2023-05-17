@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Seat } from '../(site)/tickets/page';
+import { Seat } from '@/utils/enums';
 import { useAuth } from '@/app/context/AuthContext';
 
 type Props = {
@@ -22,6 +22,19 @@ const CreateTicket: FC<Props> = ({
 
 	return (
 		<div>
+			{
+				// temporary code for test
+			}
+			<ul>
+				<li data-testid="payment-method">swish</li>
+				<li>kort</li>
+				<li>faktura</li>
+				<li>check</li>
+			</ul>
+
+			{
+				// end temporary code
+			}
 			<button
 				onClick={() => {
 					let ticketsArray: {
@@ -49,7 +62,7 @@ const CreateTicket: FC<Props> = ({
 				}}
 				className="primary-btn"
 			>
-				Create Ticket
+				Betala
 			</button>
 		</div>
 	);
