@@ -7,7 +7,7 @@ import TicketCount from '@/app/components/TicketCount';
 import ChooseSeats from '@/app/components/ChooseSeats';
 import PaymentSum from '@/app/components/PaymentSum';
 import GuestTickets from '@/app/components/GuestTickets';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, usePathname } from 'next/navigation';
 import CreateTicket from '@/app/components/CreateTicket';
 import { useAuth } from '@/app/context/AuthContext';
 import { Seat } from '@/utils/enums';
@@ -24,6 +24,7 @@ const TicketsPage: FC = () => {
 	const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
 	const searchParams = useSearchParams();
+	const pathname = usePathname();
 	const screeningId = searchParams.get('screening');
 	const screeningDate = searchParams.get('date');
 	const movieTitle = searchParams.get('movie');
@@ -149,7 +150,13 @@ const TicketsPage: FC = () => {
 								Fortsätt
 							</button>
 						) : (
-							<Link href="/login" className="primary-btn">
+							<Link
+								href={
+									'/login?p=' +
+									encodeURIComponent(`${pathname}?${searchParams}`)
+								}
+								className="primary-btn"
+							>
 								Logga in
 							</Link>
 						)}
