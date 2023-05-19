@@ -4,32 +4,38 @@ import User from '@/models/user.model';
 db();
 
 export async function POST(request: Request) {
-	const body = await request.json();
+	const body: {
+		name: string,
+		email: string,
+		password: string,
+	} = await request.json();
 
 	if (!body.name || !body.email || !body.password)
 		
 	return NextResponse.json({ msg: 'Saknar information' }, { status: 400 });
-	
-	//return new Response('Hello from NextJS!');
 
 	try {
 		const user = await User.findOne({ email: body.email });
-		
 		
 		if (user) {
 		return NextResponse.json(
 			{ msg: 'Kontot är redan registrerat' },
 			{ status: 409 }
 		); }
-		else {
-			await User.save({name: body.name, email: body.email, password: body.password})) ;
+
+
+		if(!user) {
+			let newUser = new User(body)
+			await newUser.save(); //User.save({name: body.name, email: body.email, password: body.password}) ;
 
 			return NextResponse.json(
-				{ msg: 'Välkommen!' },
-				{ status: 201 }
+				{ msg: 'Du är nu registrerat. Välkommen!', data: { name: body.name} },
+				{ status: 201 }	
 			)
 		}
-	} catch {
+		
+	} catch(error) {
+		console.log(error);
 		return NextResponse.json(
 			{ msg: 'Ett fel uppstod, försök igen!' },
 			{ status: 500 }

@@ -2,8 +2,11 @@
 import { useState } from "react";
 import FormInput from "@/app/components/FormInput";
 import Link from "next/link";
+import { useAuth } from '@/app/context/AuthContext';
 
 export default function signup() {
+  const { register, isLoading, errorMessage, createError } = useAuth();
+
   const [regData, setRegData] = useState<{
     name: string;
     email: string;
@@ -66,11 +69,14 @@ export default function signup() {
     },
   ];
 
-  const handleSubmit = (e:  React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e:  React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!regData.name || !regData.email || !regData.password)
+			return createError('Vänligen fyll i alla fält');
+      
+    await register(regData.name, regData.email, regData.password);
     //register logic here
-    //await re(userData.email, userData.password);
 
   };
   const onChange = (e: any) => {
