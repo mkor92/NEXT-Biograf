@@ -10,12 +10,14 @@ export async function POST(request: Request) {
 		password: string,
 	} = await request.json();
 
-	if (!body.name || !body.email || !body.password)
-		
+	if (!body.name || !body.email || !body.password) {
 	return NextResponse.json({ msg: 'Saknar information' }, { status: 400 });
+	}
 
 	try {
+
 		const user = await User.findOne({ email: body.email });
+		console.log(user)
 		
 		if (user) {
 		return NextResponse.json(
@@ -23,10 +25,9 @@ export async function POST(request: Request) {
 			{ status: 409 }
 		); }
 
-
 		if(!user) {
 			let newUser = new User(body)
-			await newUser.save(); //User.save({name: body.name, email: body.email, password: body.password}) ;
+			await newUser.save(); 
 
 			return NextResponse.json(
 				{ msg: 'Du är nu registrerat. Välkommen!', data: { name: body.name} },

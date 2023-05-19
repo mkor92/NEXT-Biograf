@@ -91,6 +91,33 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const register = async (name: string, email: string, password: string) => {
+		setIsLoading(true);
+		try {
+			const res = await fetch('http://localhost:3000/api/register', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ name, email, password }),
+			});
+
+			const path = searchParams.get('p');
+			const payload = await res.json();
+			setIsLoading(false);
+
+			if (res.ok) {
+				setUser(payload.data);
+				return router.push(path || '/');
+			}
+
+			return setError(payload.msg);
+		} catch (error) {
+			setIsLoading(false);
+			console.log(error);
+			return setError('An error ocurred, try again!');
+		}
+	
+		
 		// ...
 	};
 
