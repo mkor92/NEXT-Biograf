@@ -66,8 +66,12 @@ export default function signup() {
     },
   ];
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e:  React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    //register logic here
+    //await re(userData.email, userData.password);
+
   };
   const onChange = (e: any) => {
     setRegData({ ...regData, [e.target.name]: e.target.value });
@@ -83,7 +87,7 @@ export default function signup() {
         <button
           className="primary-btn"
           onClick={() => {
-            console.log(regData);
+            console.log(regData); // or here
           }}
         >
           Registrera
