@@ -62,7 +62,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 				body: JSON.stringify({ email, password }),
 			});
 
-			const path = searchParams.get('p');
+			let path = searchParams.get('p');
+			if (path) {
+				path = decodeURIComponent(path);
+			}
+
 			const payload = await res.json();
 			setIsLoading(false);
 
@@ -101,7 +105,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 				body: JSON.stringify({ name, email, password }),
 			});
 
-			const path = searchParams.get('p');
+			let path = searchParams.get('p');
+			if (path) {
+				path = decodeURIComponent(path);
+			}
 			const payload = await res.json();
 			setIsLoading(false);
 
@@ -118,7 +125,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		}
 	
 		
-		// ...
+		// Martas code goes here...
+
 	};
 
 	// First time you visit the website, we will check if you are authenticated.
