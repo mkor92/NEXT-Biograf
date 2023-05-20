@@ -1,4 +1,4 @@
-import '@site/globals.scss';
+import './globals.scss';
 import { Poppins } from 'next/font/google';
 import NextTopLoader from 'nextjs-toploader';
 import AuthProvider from '@/app/context/AuthContext';
