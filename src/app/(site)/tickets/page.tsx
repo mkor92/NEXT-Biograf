@@ -40,7 +40,7 @@ const TicketsPage: FC = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const res = await fetch(`${process.env.API}/tickets/${screeningId}`, {
+			const res = await fetch(`/api/tickets/${screeningId}`, {
 				next: { revalidate: 1 },
 			});
 

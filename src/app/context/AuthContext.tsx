@@ -54,7 +54,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const login = async (email: string, password: string) => {
 		setIsLoading(true);
 		try {
-			const res = await fetch(`${process.env.API}/login`, {
+			const res = await fetch(`/api/login`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const logout = async () => {
 		setIsLoading(true);
-		const res = await fetch(`${process.env.API}/logout`);
+		const res = await fetch(`/api/logout`);
 		setIsLoading(false);
 		if (!res.ok) {
 			return setError('An error ocurred try again!');
@@ -104,7 +104,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		if (pathname === '/login' || pathname === '/register') return;
 
 		const getUser = async () => {
-			const res = await fetch(`${process.env.API}/user`);
+			const res = await fetch(`/api/user`);
 			if (!res.ok) return setUser(null);
 			const user = await res.json();
 			return setUser(user);

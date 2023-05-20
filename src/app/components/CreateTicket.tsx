@@ -53,7 +53,7 @@ const CreateTicket: FC<Props> = ({
 						}
 					}
 
-					fetch(`${process.env.API}/tickets`, {
+					fetch(`/api/tickets`, {
 						method: 'POST',
 						headers: { 'content-Type': 'application/json' },
 						body: JSON.stringify(ticketsArray),

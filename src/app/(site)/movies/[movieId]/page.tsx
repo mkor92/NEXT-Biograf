@@ -30,14 +30,12 @@ export default function MovieInfo({ params: { movieId } }: Props) {
 	const [error, setError] = useState<boolean>(false);
 
 	async function getData(id: string) {
-		const movieRes = await fetch(`${process.env.API}/movies${id}`);
+		const movieRes = await fetch(`/api/movies/${id}`);
 		if (!movieRes.ok) return setError(true);
 		const { movie }: { movie: Movie } = await movieRes.json();
 		setMovie(movie);
 
-		const screeningsRes = await fetch(
-			`${process.env.API}/movies${id}/screenings`
-		);
+		const screeningsRes = await fetch(`/api/movies/${id}/screenings`);
 		console.log(screeningsRes);
 		if (!screeningsRes.ok) return setScreenings(null);
 		const screenings: Screening[] = await screeningsRes.json();
