@@ -40,12 +40,9 @@ const TicketsPage: FC = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const res = await fetch(
-				`http://localhost:3000/api/tickets/${screeningId}`,
-				{
-					next: { revalidate: 1 },
-				}
-			);
+			const res = await fetch(`${process.env.API}/tickets/${screeningId}`, {
+				next: { revalidate: 1 },
+			});
 
 			const payload = await res.json();
 
