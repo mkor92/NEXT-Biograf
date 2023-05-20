@@ -1,12 +1,16 @@
+import { db } from '@/utils/db';
+import Movie, { IMovie } from '@/models/movie.model';
 import Image from 'next/image';
 import Link from 'next/link';
+db();
 
-async function getMovies(): Promise<any | null> {
-	const res = await fetch('http://localhost:3000/api/movies', {
-		next: { revalidate: 1 },
-	});
-	if (!res.ok) return null;
-	return await res.json();
+async function getMovies(): Promise<IMovie[] | null> {
+	try {
+		const movies = await Movie.find();
+		return movies;
+	} catch {
+		return null;
+	}
 }
 
 export default async function Movies() {
