@@ -140,3 +140,19 @@ $ npm run cypress
 - choose number of tickets, seat and click continue
 - choose payment method and click pay
 - recive confirmation of the booking
+
+# Deployment
+[Webbsida](https://nextjs-bio.fabricioflores.se/)
+
+Webbsidan är deployad med hjälp av vercel. Vercel erbjuder en subdomän för att surfa till våran webbsida men vi har valt att använda en egen domän. 
+
+Instruktioner:
+1. Skapa ett konto i [vercel](https://vercel.com/)
+2. I vercels dashboard välj skapa ett nytt projekt.
+3. Klistar in länken till github repon (vercel kommer att börja bygga sidan).
+4. Gå in i projektinställningarna och lägg till nödvändiga enviroment variables för projektet.
+5. Välj "redeploy" för att starta om projektet med den uppdaterade datan.
+6. (Optional) Lägger till vår anpassade domän i projekts inställningar.
+
+Webbsida:
+`https://nextjs-bio.fabricioflores.se/`
