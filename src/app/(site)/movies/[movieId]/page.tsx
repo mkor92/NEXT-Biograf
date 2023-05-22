@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { notFound } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
@@ -28,31 +27,51 @@ interface Props {
 export default function MovieInfo({ params: { movieId } }: Props) {
 	const [movie, setMovie] = useState<Movie | null>(null);
 	const [screenings, setScreenings] = useState<Screening[] | null>(null);
+	const [error, setError] = useState<boolean>(false);
 
 	async function getData(id: string) {
-		const { movie }: { movie: Movie } = await fetch(
-			`http://localhost:3000/api/movies/${id}`
-		).then((res) => res.json());
+		const movieRes = await fetch(`/api/movies/${id}`);
+		if (!movieRes.ok) return setError(true);
+		const { movie }: { movie: Movie } = await movieRes.json();
 		setMovie(movie);
 
-		const screenings: Screening[] = await fetch(
-			`http://localhost:3000/api/movies/${id}/screenings`
-		).then((res) => res.json());
+		const screeningsRes = await fetch(`/api/movies/${id}/screenings`);
+		console.log(screeningsRes);
+		if (!screeningsRes.ok) return setScreenings(null);
+		const screenings: Screening[] = await screeningsRes.json();
 		setScreenings(screenings);
 	}
 
 	useEffect(() => {
-		getData(movieId);
+		getData(movieId.toString());
 	}, []);
 
 	return (
 		<div className="sec">
-			{!movie && (
+			{error && (
+				<div className="sec-cont" style={{ color: 'white' }}>
+					<p>Denna film finns inte i våra system!</p>
+					<Link
+						href="/"
+						className="primary-btn"
+						style={{
+							marginTop: '1rem',
+							fontSize: '.8em',
+							display: 'inline-block',
+						}}
+					>
+						Gå hem
+					</Link>
+				</div>
+			)}
+
+			{!movie && !error && (
 				<div className="sec-cont movie-details-loading">
 					<FontAwesomeIcon icon={faSpinner} spin={true} />
 				</div>
 			)}
-			{movie && (
+
+			{movie && !error && (
 				<>
 					<article className="movie sec-cont">
 						<div>
@@ -67,6 +86,7 @@ export default function MovieInfo({ params: { movieId } }: Props) {
 							<p className="intro">{movie?.intro}</p>
 						</div>
 					</article>
+
 					{screenings && (
 						<section className="screenings sec-cont">
 							<h2>Filmvisningar</h2>

@@ -118,16 +118,16 @@ a {
   color: $default-red;
 }
 
-@import '../sass-sections/header.scss';
-@import '../sass-sections/footer.scss';
-@import '../sass-sections/nav-menu.scss';
-@import '../sass-sections/under-construction.scss';
-@import '../sass-sections/about-us.scss';
-@import '../sass-sections/salons.scss';
-@import '../sass-sections/restaurant.scss';
-@import '../sass-sections/login.scss';
-@import '../sass-sections/tickets.scss';
-@import '../sass-sections/home.scss';
-@import '../sass-sections/registration.scss';
-@import '../sass-sections/movies.scss';
-@import '../sass-sections/booking-guest.scss';
+@import './sass-sections/header.scss';
+@import './sass-sections/footer.scss';
+@import './sass-sections/nav-menu.scss';
+@import './sass-sections/under-construction.scss';
+@import './sass-sections/about-us.scss';
+@import './sass-sections/salons.scss';
+@import './sass-sections/restaurant.scss';
+@import './sass-sections/login.scss';
+@import './sass-sections/tickets.scss';
+@import './sass-sections/home.scss';
+@import './sass-sections/registration.scss';
+@import './sass-sections/movies.scss';
+@import './sass-sections/booking-guest.scss';

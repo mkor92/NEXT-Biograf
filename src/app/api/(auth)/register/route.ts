@@ -30,7 +30,7 @@ export async function POST(request: Request) {
 			await newUser.save(); 
 
 			return NextResponse.json(
-				{ msg: 'Du är nu registrerat. Välkommen!', data: { name: body.name} },
+				{ msg: 'Du är nu registrerat. Välkommen', data: { name: body.name} },
 				{ status: 201 }	
 			)
 		}
@@ -43,4 +43,3 @@ export async function POST(request: Request) {
 		);
 	}
 }
-// route for register 

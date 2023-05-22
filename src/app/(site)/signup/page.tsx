@@ -76,7 +76,6 @@ export default function signup() {
 			return createError('Vänligen fyll i alla fält');
 
     await register(regData.name, regData.email, regData.password);
-    //register logic here
 
   };
   const onChange = (e: any) => {
