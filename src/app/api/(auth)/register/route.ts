@@ -23,17 +23,17 @@ export async function POST(request: Request) {
 		return NextResponse.json(
 			{ msg: 'Kontot är redan registrerat' },
 			{ status: 409 }
-		); }
+		); 
+		} else {
+				let newUser = new User(body)
+				await newUser.save(); 
 
-		if(!user) {
-			let newUser = new User(body)
-			await newUser.save(); 
-
-			return NextResponse.json(
-				{ msg: 'Du är nu registrerat. Välkommen', data: { name: body.name} },
-				{ status: 201 }	
-			)
-		}
+				return NextResponse.json(
+					{ msg: 'Du är nu registrerat. Välkommen', data: { name: body.name} },
+					{ status: 201 }	
+				)
+			}
+		
 		
 	} catch(error) {
 		console.log(error);
