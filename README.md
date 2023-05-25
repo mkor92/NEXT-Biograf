@@ -142,17 +142,17 @@ $ npm run cypress
 - recive confirmation of the booking
 
 # Deployment
-[Webbsida](https://nextjs-bio.fabricioflores.se/)
+[Website](https://nextjs-bio.fabricioflores.se/)
 
-Webbsidan är deployad med hjälp av vercel. Vercel erbjuder en subdomän för att surfa till våran webbsida men vi har valt att använda en egen domän. 
+The website is deployed using vercel. Vercel provides a free subdomain to visit the deployed website but we have decided to use a custom domain.
 
-Instruktioner:
-1. Skapa ett konto i [vercel](https://vercel.com/)
-2. I vercels dashboard välj skapa ett nytt projekt.
-3. Klistar in länken till github repon (vercel kommer att börja bygga sidan).
-4. Gå in i projektinställningarna och lägg till nödvändiga enviroment variables för projektet.
-5. Välj "redeploy" för att starta om projektet med den uppdaterade datan.
-6. (Optional) Lägger till vår anpassade domän i projekts inställningar.
+Instructions:
+1. Create an account in [vercel](https://vercel.com/)
+2. Select create a new project in vercel's dashboard.
+3. Paste the link to your github repo. (Vercel will begin to deploy the site immediately)
+4. Go to the project's settings and add the necessary enviroment variables such as database uri etc.
+5. Choose "redeploy" to restart the app with the updated settings.
+6. (Optional) Add the custom domain in the project's settings and write the correct dns settings in your domain provider service.
 
-Webbsida:
+Website:
 `https://nextjs-bio.fabricioflores.se/`
