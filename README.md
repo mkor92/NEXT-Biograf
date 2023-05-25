@@ -140,3 +140,19 @@ $ npm run cypress
 - choose number of tickets, seat and click continue
 - choose payment method and click pay
 - recive confirmation of the booking
+
+# Deployment
+[Website](https://nextjs-bio.fabricioflores.se/)
+
+The website is deployed using vercel. Vercel provides a free subdomain to visit the deployed website but we have decided to use a custom domain.
+
+Instructions:
+1. Create an account in [vercel](https://vercel.com/)
+2. Select create a new project in vercel's dashboard.
+3. Paste the link to your github repo. (Vercel will begin to deploy the site immediately)
+4. Go to the project's settings and add the necessary enviroment variables such as database uri etc.
+5. Choose "redeploy" to restart the app with the updated settings.
+6. (Optional) Add the custom domain in the project's settings and write the correct dns settings in your domain provider service.
+
+Website:
+`https://nextjs-bio.fabricioflores.se/`
