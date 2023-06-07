@@ -95,7 +95,34 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const register = async (name: string, email: string, password: string) => {
-		// Martas code goes here...
+		//setIsLoading(true);
+		try {
+			const res = await fetch('/api/register', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ name, email, password }),
+			});
+
+			let path = searchParams.get('p');
+			if (path) {
+				path = decodeURIComponent(path);
+			}
+			const payload = await res.json();
+			//setIsLoading(false);
+
+			if (res.ok) {
+				return router.push(path || '/login');
+			}
+
+			return setError(payload.msg);
+		} catch (error) {
+			setIsLoading(false);
+			console.log(error);
+			return setError('An error ocurred, try again!');
+		}
+
 	};
 
 	// First time you visit the website, we will check if you are authenticated.

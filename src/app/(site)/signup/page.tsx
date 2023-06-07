@@ -2,8 +2,12 @@
 import { useState } from "react";
 import FormInput from "@/app/components/FormInput";
 import Link from "next/link";
+import { useAuth } from '@/app/context/AuthContext';
+import { Http2ServerResponse } from "http2";
 
 export default function signup() {
+  const { register, createError } = useAuth();
+
   const [regData, setRegData] = useState<{
     name: string;
     email: string;
@@ -66,8 +70,14 @@ export default function signup() {
     },
   ];
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    if (!regData.name || !regData.email || !regData.password)
+			return createError('Vänligen fyll i alla fält');
+
+    await register(regData.name, regData.email, regData.password);
+
   };
   const onChange = (e: any) => {
     setRegData({ ...regData, [e.target.name]: e.target.value });
@@ -75,7 +85,7 @@ export default function signup() {
 
   return (
     <div className="registration sec-cont">
-      <form onSubmit={handleSubmit}>
+      <form className="reg-form" onSubmit={handleSubmit}>
         <h2>Registrera dig</h2>
         {inputs.map((input) => (
           <FormInput key={input.id} {...input} onChange={onChange} />
@@ -83,8 +93,10 @@ export default function signup() {
         <button
           className="primary-btn"
           onClick={() => {
-            console.log(regData);
+            console.log(regData);      
           }}
+          type="submit"
+          
         >
           Registrera
         </button>
