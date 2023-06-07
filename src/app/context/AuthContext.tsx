@@ -95,7 +95,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const register = async (name: string, email: string, password: string) => {
-		setIsLoading(true);
+		//setIsLoading(true);
 		try {
 			const res = await fetch('/api/register', {
 				method: 'POST',
@@ -110,11 +110,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 				path = decodeURIComponent(path);
 			}
 			const payload = await res.json();
-			setIsLoading(false);
+			//setIsLoading(false);
 
 			if (res.ok) {
-				setUser(payload.data);
-				return router.push(path || '/');
+				return router.push(path || '/login');
 			}
 
 			return setError(payload.msg);

@@ -3,6 +3,7 @@ import { useState } from "react";
 import FormInput from "@/app/components/FormInput";
 import Link from "next/link";
 import { useAuth } from '@/app/context/AuthContext';
+import { Http2ServerResponse } from "http2";
 
 export default function signup() {
   const { register, createError } = useAuth();
@@ -84,7 +85,7 @@ export default function signup() {
 
   return (
     <div className="registration sec-cont">
-      <form onSubmit={handleSubmit}>
+      <form className="reg-form" onSubmit={handleSubmit}>
         <h2>Registrera dig</h2>
         {inputs.map((input) => (
           <FormInput key={input.id} {...input} onChange={onChange} />
@@ -92,7 +93,7 @@ export default function signup() {
         <button
           className="primary-btn"
           onClick={() => {
-            console.log(regData); // or here
+            console.log(regData);      
           }}
           type="submit"
           
